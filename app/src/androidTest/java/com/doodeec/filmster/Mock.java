@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 /**
  * Created by Dusan Doodeec Bartos on 20.10.2014.
+ *
+ * Mock definitions for testing
  */
 public class Mock {
 

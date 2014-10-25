@@ -14,10 +14,14 @@ import org.json.JSONObject;
 public class MovieSpec extends InstrumentationTestCase {
     //TODO movie object test
 
-    public void testMovieConstructor() throws Exception {
-        Movie movie = new Movie();
+    public void testMovieJSONConstructor() throws Exception {
+        Movie movie = new Movie(new JSONObject());
 
         assertNotNull(movie);
+    }
+
+    public void testMovieCursorConstructor() throws Exception {
+        //TODO test cursor constructor
     }
 
     public void testMovieGetters() throws Exception {
