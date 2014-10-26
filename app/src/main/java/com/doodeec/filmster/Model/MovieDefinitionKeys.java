@@ -7,6 +7,9 @@ package com.doodeec.filmster.Model;
  */
 public class MovieDefinitionKeys {
 
+    public static final String TOTAL_KEY = "total";
+    public static final String MOVIES_KEY = "movies";
+
     protected static final String KEY_ID = "id";
     protected static final String KEY_TITLE = "title";
     protected static final String KEY_YEAR = "year";

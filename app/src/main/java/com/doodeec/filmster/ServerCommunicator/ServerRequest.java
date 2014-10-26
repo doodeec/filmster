@@ -26,7 +26,7 @@ import java.util.Arrays;
  *
  * REST request
  */
-public class ServerRequest extends AsyncTask<Void, Integer, Void> {
+public class ServerRequest extends AsyncTask<Void, Integer, Void> implements ServerRequestInterface {
 
     public enum RequestType {
         GET("GET"),
