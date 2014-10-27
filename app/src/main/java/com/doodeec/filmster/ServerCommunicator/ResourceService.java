@@ -18,6 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 /**
  * Created by Dusan Doodeec Bartos on 20.10.2014.
  *
@@ -39,6 +41,8 @@ public class ResourceService {
     private static final String API_KEY = "38fnext9p73hh8m3hacx5s6c";
     private static final String PAGE_KEY = "page";
     private static final int PAGE_LIMIT = 5;
+
+    private static HashMap<String, BitmapServerResponseListener> mImageRequestMap = new HashMap<String, BitmapServerResponseListener>();
 
     /**
      * Builds API url for specific page of movie list
@@ -131,6 +135,8 @@ public class ResourceService {
             responseListener.onSuccess(cachedImage);
             return null;
         } else {
+            //TODO imageRequestMap - do not execute duplicate requests
+
             // if image is not cached, load it from server and cache if there is valid response (Bitmap is not null)
             ServerRequest request = new ServerRequest(url, ServerRequest.RequestType.GET, new BitmapServerResponseListener() {
                 @Override
@@ -138,27 +144,34 @@ public class ResourceService {
                     //intercept success response to cache image to LRU cache
                     Log.d("FILMSTER", "Image loaded: " + url);
                     ImageCache.addBitmapToCache(url, loadedImage);
+                    mImageRequestMap.remove(url);
                     responseListener.onSuccess(loadedImage);
                 }
 
                 @Override
                 public void onError(ErrorResponse error) {
                     Log.e("FILMSTER", "Image can not be loaded: " + error.getMessage());
+                    mImageRequestMap.remove(url);
                     responseListener.onError(error);
                 }
 
                 @Override
                 public void onProgress(Integer progress) {
                     Log.d("FILMSTER", "Image loading: " + progress + "% (" + url + ")");
+                    mImageRequestMap.remove(url);
                     responseListener.onProgress(progress);
                 }
 
                 @Override
                 public void onCancelled() {
                     Log.d("FILMSTER", "Image loading cancelled");
+                    mImageRequestMap.remove(url);
                     responseListener.onCancelled();
                 }
             });
+
+            mImageRequestMap.put(url, responseListener);
+
             request.execute();
             return request;
         }

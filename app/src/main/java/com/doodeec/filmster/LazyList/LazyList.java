@@ -1,4 +1,4 @@
-package com.doodeec.filmster.UIcomponents;
+package com.doodeec.filmster.LazyList;
 
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.
@@ -8,4 +8,6 @@ package com.doodeec.filmster.UIcomponents;
  * Features loading indicator at the bottom of the list to enable lazy loading of data
  */
 public class LazyList extends android.support.v4.app.ListFragment {
+
+
 }

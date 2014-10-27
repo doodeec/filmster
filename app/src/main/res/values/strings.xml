@@ -11,4 +11,8 @@
     <string name="unexpected_response">Unexpected response returned from the server</string>
     <string name="connection_timeout">Connection timeout</string>
 
+    <!--Movie-->
+    <string name="movie_poster">Movie poster</string>
+    <string name="movie_rating">%d \"%\"</string>
+
 </resources>
