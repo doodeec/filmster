@@ -7,8 +7,9 @@
 
     <ImageView
         android:id="@+id/movie_poster"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginRight="@dimen/padding"
         android:src="@drawable/ic_launcher"
         android:contentDescription="@string/movie_poster"/>
@@ -16,7 +17,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <TextView

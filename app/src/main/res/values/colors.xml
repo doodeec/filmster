@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+
+    <color name="emerald">#2db329</color>
+    <color name="emerald_deep">#00733a</color>
+    <color name="azure_deep">#0086d4</color>
+    <color name="amber_deep">#ffd15300</color>
+    <color name="ruby_deep">#b3000c</color>
+</resources>
