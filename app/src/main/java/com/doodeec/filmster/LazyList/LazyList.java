@@ -1,5 +1,8 @@
 package com.doodeec.filmster.LazyList;
 
+import android.graphics.Bitmap;
+import android.view.View;
+
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.
  *
@@ -9,5 +12,13 @@ package com.doodeec.filmster.LazyList;
  */
 public class LazyList extends android.support.v4.app.ListFragment {
 
+    protected void movieImageLoaded(int position, Bitmap movieImage) {
+        View viewAtPosition = getListView().getChildAt(position - getListView().getFirstVisiblePosition());
 
+        // update only if view is visible
+        if (viewAtPosition != null) {
+            MovieItemHolder holder = (MovieItemHolder) viewAtPosition.getTag();
+            holder.setPoster(movieImage);
+        }
+    }
 }

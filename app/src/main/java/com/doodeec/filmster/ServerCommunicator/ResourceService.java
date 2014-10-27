@@ -134,9 +134,10 @@ public class ResourceService {
             // do not load image which was cached before from server, return cached one
             responseListener.onSuccess(cachedImage);
             return null;
+        } else if (mImageRequestMap.containsKey(url)) {
+            //TODO multiple response listeners chaining support?
+            return null;
         } else {
-            //TODO imageRequestMap - do not execute duplicate requests
-
             // if image is not cached, load it from server and cache if there is valid response (Bitmap is not null)
             ServerRequest request = new ServerRequest(url, ServerRequest.RequestType.GET, new BitmapServerResponseListener() {
                 @Override

@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content"
+              android:padding="@dimen/padding">
 
     <ImageView
         android:id="@+id/movie_poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/padding"
+        android:src="@drawable/ic_launcher"
         android:contentDescription="@string/movie_poster"/>
 
     <LinearLayout
@@ -19,17 +22,25 @@
         <TextView
             android:id="@+id/movie_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_text"
+            android:textStyle="bold"
+            android:text="Avengers"/>
 
         <TextView
             android:id="@+id/movie_year"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/year_text"
+            android:text="2014"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/movie_rating"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/padding"
+        android:textSize="@dimen/rating_text"
+        android:text="80%"/>
 
 </LinearLayout>
