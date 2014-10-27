@@ -1,6 +1,11 @@
 package com.doodeec.filmster;
 
+import android.graphics.Bitmap;
 import android.util.Log;
+
+import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
+import com.doodeec.filmster.ServerCommunicator.ResponseListener.JSONServerResponseListener;
+import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +16,36 @@ import org.json.JSONObject;
  * Mock definitions for testing
  */
 public class Mock {
+
+    public static String REST_URL = "http://doodeec.com";
+
+    public static JSONServerResponseListener JSON_LISTENER = new JSONServerResponseListener() {
+        @Override
+        public void onSuccess(JSONObject responseObject) {}
+
+        @Override
+        public void onError(ErrorResponse error) {}
+
+        @Override
+        public void onProgress(Integer progress) {}
+
+        @Override
+        public void onCancelled() {}
+    };
+
+    public static BitmapServerResponseListener BITMAP_LISTENER = new BitmapServerResponseListener() {
+        @Override
+        public void onSuccess(Bitmap responseObject) {}
+
+        @Override
+        public void onError(ErrorResponse error) {}
+
+        @Override
+        public void onProgress(Integer progress) {}
+
+        @Override
+        public void onCancelled() {}
+    };
 
     public static JSONObject REST_MOVIE() {
         try {

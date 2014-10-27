@@ -1,4 +1,4 @@
-package com.doodeec.filmster.ServerCommunicator;
+package com.doodeec.filmster.ServerCommunicator.ServerRequest;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

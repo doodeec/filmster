@@ -12,7 +12,6 @@ import org.json.JSONObject;
  * @see com.doodeec.filmster.Model.Movie
  */
 public class MovieSpec extends InstrumentationTestCase {
-    //TODO movie object test
 
     public void testMovieJSONConstructor() throws Exception {
         Movie movie = new Movie(new JSONObject());

@@ -1,6 +1,6 @@
 package com.doodeec.filmster.ServerCommunicator.ResponseListener;
 
-import com.doodeec.filmster.ServerCommunicator.ErrorResponse;
+import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
 
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.
@@ -20,7 +20,7 @@ public interface ServerResponseListener<T> {
      * Fires when response is evaluated as unsuccessful
      *
      * @param error error message
-     * @see com.doodeec.filmster.ServerCommunicator.ErrorResponse
+     * @see com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse
      */
     public void onError(ErrorResponse error);
 

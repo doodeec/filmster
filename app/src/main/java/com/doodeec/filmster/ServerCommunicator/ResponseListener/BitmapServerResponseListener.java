@@ -9,7 +9,7 @@ import android.graphics.Bitmap;
  * Extends Generic interface
  * A way to use two generic interfaces in the object constructors
  *
- * @see com.doodeec.filmster.ServerCommunicator.ServerRequest
+ * @see com.doodeec.filmster.ServerCommunicator.ServerRequest.ServerRequest
  */
 public interface BitmapServerResponseListener extends ServerResponseListener<Bitmap> {
 }

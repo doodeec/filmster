@@ -1,4 +1,4 @@
-package com.doodeec.filmster.ServerCommunicator;
+package com.doodeec.filmster.ServerCommunicator.ServerRequest;
 
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.

@@ -10,6 +10,9 @@ import com.doodeec.filmster.Model.MovieDefinitionKeys;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.JSONServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
+import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
+import com.doodeec.filmster.ServerCommunicator.ServerRequest.ServerRequest;
+import com.doodeec.filmster.ServerCommunicator.ServerRequest.ServerRequestInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;

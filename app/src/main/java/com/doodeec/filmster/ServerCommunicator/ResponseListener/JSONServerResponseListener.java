@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * Extends Generic interface
  * A way to use two generic interfaces in the object constructors
  *
- * @see com.doodeec.filmster.ServerCommunicator.ServerRequest
+ * @see com.doodeec.filmster.ServerCommunicator.ServerRequest.ServerRequest
  */
 public interface JSONServerResponseListener extends ServerResponseListener<JSONObject> {
 }
