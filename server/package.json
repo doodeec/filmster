@@ -1,0 +1,14 @@
+{
+  "name": "FilmsterAPI",
+  "version": "1.0.0",
+  "description": "Filmster REST API server for mocking feed",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dusan Bartos",
+  "license": "APACHE2",
+  "dependencies": {
+    "express": "^4.10.1"
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "total": 15,
+  "movies": [
+    {
+      "id": "771351912",
+      "title": "Interstellar",
+      "year": 2014,
+      "mpaa_rating": "PG-13",
+      "runtime": 169,
+      "critics_consensus": "",
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 74,
+        "audience_score": 99
+      },
+      "synopsis": "With our time on Earth coming to an end, a team of explorers undertakes the most important mission in human history; traveling beyond this galaxy to discover whether mankind has a future among the stars. (C) Paramount",
+      "posters": {
+        "thumbnail": "http://content9.flixster.com/movie/11/18/05/11180587_tmb.jpg",
+        "profile": "http://content9.flixster.com/movie/11/18/05/11180587_tmb.jpg",
+        "detailed": "http://content9.flixster.com/movie/11/18/05/11180587_tmb.jpg",
+        "original": "http://content9.flixster.com/movie/11/18/05/11180587_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Matthew McConaughey",
+          "id": "162652350",
+          "characters": ["Cooper"]
+        },
+        {
+          "name": "Anne Hathaway",
+          "id": "162656190",
+          "characters": ["Brand"]
+        },
+        {
+          "name": "Jessica Chastain",
+          "id": "770760183",
+          "characters": ["Murph"]
+        },
+        {
+          "name": "Casey Affleck",
+          "id": "162706324",
+          "characters": ["Tom"]
+        },
+        {
+          "name": "Wes Bentley",
+          "id": "162670889",
+          "characters": ["Doyle"]
+        }
+      ],
+      "alternate_ids": {"imdb": "0816692"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771351912.json",
+        "alternate": "http://www.rottentomatoes.com/m/interstellar_2014/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771351912/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771351912/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771351912/similar.json"
+      }
+    },
+    {
+      "id": "771355766",
+      "title": "Big Hero 6",
+      "year": 2014,
+      "mpaa_rating": "PG",
+      "runtime": 93,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 100,
+        "audience_score": 99
+      },
+      "synopsis": "With all the heart and humor audiences expect from Walt Disney Animation Studios, \"Big Hero 6\" is an action-packed comedy-adventure about robotics prodigy Hiro Hamada, who learns to harness his genius-thanks to his brilliant brother Tadashi and their like-minded friends: adrenaline junkie Go Go Tamago, neatnik Wasabi, chemistry whiz Honey Lemon and fanboy Fred. When a devastating turn of events catapults them into the midst of a dangerous plot unfolding in the streets of San Fransokyo, Hiro turns to his closest companion-a robot named Baymax-and transforms the group into a band of high-tech heroes determined to solve the mystery. (C) Disney",
+      "posters": {
+        "thumbnail": "http://content7.flixster.com/movie/11/17/85/11178581_tmb.jpg",
+        "profile": "http://content7.flixster.com/movie/11/17/85/11178581_tmb.jpg",
+        "detailed": "http://content7.flixster.com/movie/11/17/85/11178581_tmb.jpg",
+        "original": "http://content7.flixster.com/movie/11/17/85/11178581_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Ryan Potter",
+          "id": "771360315",
+          "characters": ["Hiro Hamada"]
+        },
+        {
+          "name": "Scott Adsit",
+          "id": "406975480",
+          "characters": ["Baymax"]
+        },
+        {
+          "name": "T.J. Miller",
+          "id": "770690115",
+          "characters": ["Fred"]
+        },
+        {
+          "name": "Jamie Chung",
+          "id": "770694653",
+          "characters": ["Go Go Tomago"]
+        },
+        {
+          "name": "Damon Wayans Jr.",
+          "id": "770822247",
+          "characters": ["Wasabi"]
+        }
+      ],
+      "alternate_ids": {"imdb": "2245084"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771355766.json",
+        "alternate": "http://www.rottentomatoes.com/m/big_hero_6/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771355766/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771355766/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771355766/similar.json"
+      }
+    },
+    {
+      "id": "771325470",
+      "title": "Jessabelle",
+      "year": 2014,
+      "mpaa_rating": "PG-13",
+      "runtime": 90,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_score": -1,
+        "audience_score": 89
+      },
+      "synopsis": "From the mastermind producer of Paranormal Activity and Insidious comes the ghostly tale of Jessabelle. Returning to her childhood home in Louisiana to recuperate from a horrific car accident, Jessabelle (Sarah Snook of Sleeping Beauty) comes face to face with a long-tormented spirit that has been seeking her return -- and has no intention of letting her escape. (c) Lionsgate",
+      "posters": {
+        "thumbnail": "http://content8.flixster.com/movie/11/18/01/11180198_tmb.jpg",
+        "profile": "http://content8.flixster.com/movie/11/18/01/11180198_tmb.jpg",
+        "detailed": "http://content8.flixster.com/movie/11/18/01/11180198_tmb.jpg",
+        "original": "http://content8.flixster.com/movie/11/18/01/11180198_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Amber Stevens",
+          "id": "770793901"
+        },
+        {
+          "name": "Sarah Snook",
+          "id": "771102518",
+          "characters": ["Jessabelle"]
+        },
+        {
+          "name": "David Andrews",
+          "id": "162673729"
+        },
+        {
+          "name": "Joelle Carter",
+          "id": "364641160"
+        },
+        {
+          "name": "Mark Webber",
+          "id": "364608550"
+        }
+      ],
+      "alternate_ids": {"imdb": "2300975"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771325470.json",
+        "alternate": "http://www.rottentomatoes.com/m/jessabelle/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771325470/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771325470/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771325470/similar.json"
+      }
+    },
+    {
+      "id": "771366367",
+      "title": "The Theory of Everything",
+      "year": 2014,
+      "mpaa_rating": "PG-13",
+      "runtime": 123,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 83,
+        "audience_score": 97
+      },
+      "synopsis": "Starring Eddie Redmayne (\"Les Miserables\") and Felicity Jones (\"The Amazing Spider-Man 2\"), this is the extraordinary story of one of the world's greatest living minds, the renowned astrophysicist Stephen Hawking, who falls deeply in love with fellow Cambridge student Jane Wilde. Once a healthy, active young man, Hawking received an earth-shattering diagnosis at 21 years of age. With Jane fighting tirelessly by his side, Stephen embarks on his most ambitious scientific work, studying the very thing he now has precious little of - time. Together, they defy impossible odds, breaking new ground in medicine and science, and achieving more than they could ever have dreamed. The film is based on the memoir Travelling to Infinity: My Life with Stephen, by Jane Hawking, and is directed by Academy Award winner James Marsh (\"Man on Wire\"). (c) Focus",
+      "posters": {
+        "thumbnail": "http://content6.flixster.com/movie/11/18/02/11180224_tmb.jpg",
+        "profile": "http://content6.flixster.com/movie/11/18/02/11180224_tmb.jpg",
+        "detailed": "http://content6.flixster.com/movie/11/18/02/11180224_tmb.jpg",
+        "original": "http://content6.flixster.com/movie/11/18/02/11180224_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Eddie Redmayne",
+          "id": "358068995",
+          "characters": ["Stephen Hawking"]
+        },
+        {
+          "name": "Felicity Jones",
+          "id": "770696159",
+          "characters": ["Jane Wilde"]
+        },
+        {
+          "name": "David Thewlis",
+          "id": "162656526",
+          "characters": ["Dennis Sciama"]
+        },
+        {
+          "name": "Emily Watson",
+          "id": "162654016",
+          "characters": ["Isobel Hawking"]
+        },
+        {
+          "name": "Charlie Cox",
+          "id": "392799906",
+          "characters": ["Jonathan Hellyer Jones"]
+        }
+      ],
+      "alternate_ids": {"imdb": "2980516"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771366367.json",
+        "alternate": "http://www.rottentomatoes.com/m/the_theory_of_everything_2014/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771366367/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771366367/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771366367/similar.json"
+      }
+    },
+    {
+      "id": "771386517",
+      "title": "Merry Friggin' Christmas",
+      "year": 2014,
+      "mpaa_rating": "PG-13",
+      "runtime": 88,
+      "release_dates": {
+        "theater": "2014-11-07",
+        "dvd": "2014-11-25"
+      },
+      "ratings": {
+        "critics_score": -1,
+        "audience_score": 89
+      },
+      "synopsis": "Boyd and his family are forced to spend a dreaded Christmas at his parents' house with his eccentric father that he has been avoiding for years. When he realizes that he left his son's gifts at home, Boyd and his father must hit the road in a blizzard to retrieve the gifts before sunrise to save Christmas. (C) eOne",
+      "posters": {
+        "thumbnail": "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif",
+        "profile": "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif",
+        "detailed": "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif",
+        "original": "http://d3biamo577v4eu.cloudfront.net/static/images/redesign/poster_default_thumb.gif"
+      },
+      "abridged_cast": [
+        {
+          "name": "Joel McHale",
+          "id": "770792384",
+          "characters": ["Boyd Mitchler"]
+        },
+        {
+          "name": "Robin Williams",
+          "id": "162652387",
+          "characters": ["Mitch"]
+        },
+        {
+          "name": "Lauren Graham",
+          "id": "162652473",
+          "characters": ["Luann Mitchler"]
+        },
+        {
+          "name": "Clark Duke",
+          "id": "770790109",
+          "characters": ["Nelson"]
+        },
+        {
+          "name": "Candice Bergen",
+          "id": "162664062",
+          "characters": ["Donna"]
+        }
+      ],
+      "alternate_ids": {"imdb": "0910885"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771386517.json",
+        "alternate": "http://www.rottentomatoes.com/m/merry_friggin_christmas/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771386517/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771386517/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771386517/similar.json"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=1",
+    "next": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=2",
+    "alternate": "http://www.rottentomatoes.com/movie/upcoming"
+  },
+  "link_template": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit={results_per_page}&page={page_number}&country={country-code}"
+}

@@ -1,0 +1,273 @@
+{
+  "total": 15,
+  "movies": [
+    {
+      "id": "771362335",
+      "title": "Why Don't You Play in Hell?",
+      "year": 2014,
+      "mpaa_rating": "Unrated",
+      "runtime": 126,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 82,
+        "audience_score": 68
+      },
+      "synopsis": "Ten years ago, the Kitagawa yakuza clan attacked the Muto yakuza clan at Muto's own home, only to have Muto's wife fight back. This unexpectedly left the Kitagawa clan in shambles, with their top hitman Ikegmai wounded and Muto's wife in prison. Despite the carnage, the most unfortunate fallout from this attack is when Muto's beloved daughter, Mitsuko, has her adorable toothpaste commercial taken off the air. Now, Ikegami seeks revenge, while Muto only has one desire: to have his wife return from prison to see Mitsuko star in her first movie. Enter The Fuck Bombers, an eager but untalented group of wannabe filmmakers whose dreams of making movies have come crashing down after ten years. Circumstances have brought them to this fateful moment where they'll be able to film the climactic battle between yakuzas in an epic, over-the-top ending for the ages. Described by Sono as \"an action film about the love of 35mm,\" and based on a screenplay he wrote nearly 15 years ago, Why Don't You Play In Hell? is among Sono's best work as his trademark excess and outrageousness is infused with an affection for the Japanese films that have come before it. This is Sion Sono at his most endearing and awesome.(C) Drafthouse",
+      "posters": {
+        "thumbnail": "http://content7.flixster.com/movie/11/17/92/11179217_tmb.jpg",
+        "profile": "http://content7.flixster.com/movie/11/17/92/11179217_tmb.jpg",
+        "detailed": "http://content7.flixster.com/movie/11/17/92/11179217_tmb.jpg",
+        "original": "http://content7.flixster.com/movie/11/17/92/11179217_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Hiroki Hasegawa",
+          "id": "771455352",
+          "characters": ["Hirata"]
+        },
+        {
+          "name": "Jun Kunimura",
+          "id": "348576461"
+        },
+        {
+          "name": "Shinichi Tsutsumi",
+          "id": "364606438"
+        },
+        {
+          "name": "Tak Sakaguchi",
+          "id": "221315849"
+        },
+        {
+          "name": "Fumi Nikaido",
+          "id": "770852810"
+        }
+      ],
+      "alternate_ids": {"imdb": "2409302"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362335.json",
+        "alternate": "http://www.rottentomatoes.com/m/why_dont_you_play_in_hell/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362335/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362335/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362335/similar.json"
+      }
+    },
+    {
+      "id": "771362751",
+      "title": "Open Windows",
+      "year": 2014,
+      "mpaa_rating": "Unrated",
+      "runtime": 100,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Rotten",
+        "critics_score": 33,
+        "audience_score": 73
+      },
+      "synopsis": "Nick is excited to discover that he's won a dinner date with his favorite actress, Jill Goddard. But when Jill refuses to honor the contest, her manager Chord makes an offer he can't refuse: the ability to view Jill secretly via computer. Nick begins watching the unknowing star on her webcam, not realizing that this decision will put both himself and Jill at risk as they enter a terrifying world of cat-and-mouse where nothing-and no one-are as they seem.",
+      "posters": {
+        "thumbnail": "http://content6.flixster.com/movie/11/18/03/11180332_tmb.jpg",
+        "profile": "http://content6.flixster.com/movie/11/18/03/11180332_tmb.jpg",
+        "detailed": "http://content6.flixster.com/movie/11/18/03/11180332_tmb.jpg",
+        "original": "http://content6.flixster.com/movie/11/18/03/11180332_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Elijah Wood",
+          "id": "162652512",
+          "characters": ["Nick Chambers"]
+        },
+        {
+          "name": "Sasha Grey",
+          "id": "770830720",
+          "characters": ["Jill Goddard"]
+        },
+        {
+          "name": "Ivan Gonzales",
+          "id": "771507221"
+        },
+        {
+          "name": "Nacho Vigalondo",
+          "id": "770688590"
+        },
+        {
+          "name": "Neil Maskell",
+          "id": "770715383",
+          "characters": ["Chord"]
+        }
+      ],
+      "alternate_ids": {"imdb": "2409818"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362751.json",
+        "alternate": "http://www.rottentomatoes.com/m/open_windows_2013/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362751/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362751/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771362751/similar.json"
+      }
+    },
+    {
+      "id": "771378044",
+      "title": "The Way He Looks",
+      "year": 2014,
+      "mpaa_rating": "Unrated",
+      "runtime": 96,
+      "release_dates": {
+        "theater": "2014-11-07",
+        "dvd": "2015-03-17"
+      },
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 100,
+        "audience_score": 70
+      },
+      "synopsis": "Leonardo is a blind teenager searching for independence. His everyday life, the relationship with his best friend, Giovana, and the way he sees the world change completely with the arrival of Gabriel.",
+      "posters": {
+        "thumbnail": "http://content8.flixster.com/movie/11/18/08/11180846_tmb.jpg",
+        "profile": "http://content8.flixster.com/movie/11/18/08/11180846_tmb.jpg",
+        "detailed": "http://content8.flixster.com/movie/11/18/08/11180846_tmb.jpg",
+        "original": "http://content8.flixster.com/movie/11/18/08/11180846_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Ghilherme Lobo",
+          "id": "771485711",
+          "characters": ["Leonardo"]
+        },
+        {
+          "name": "Tess Amorim",
+          "id": "771485712",
+          "characters": ["Giovana"]
+        },
+        {
+          "name": "Fabio Audi",
+          "id": "771485713",
+          "characters": ["Gabriel"]
+        },
+        {
+          "name": "Lucia Romano",
+          "id": "771555890",
+          "characters": ["Mom"]
+        },
+        {
+          "name": "Eucir deSouza",
+          "id": "771068204",
+          "characters": ["Dad"]
+        }
+      ],
+      "alternate_ids": {"imdb": "1702014"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771378044.json",
+        "alternate": "http://www.rottentomatoes.com/m/the_way_he_looks/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771378044/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771378044/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771378044/similar.json"
+      }
+    },
+    {
+      "id": "771315324",
+      "title": "Mr. Pip",
+      "year": 2014,
+      "mpaa_rating": "PG-13",
+      "runtime": 130,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_rating": "Fresh",
+        "critics_score": 60,
+        "audience_score": 72
+      },
+      "synopsis": "Based on the best-selling novel, Mr. Pip is a film by Andrew Adamson (Chronicles of Narnia, Shrek) and stars Hugh Laurie (\"House M.D.\", Monsters Vs. Aliens) as Mr. Watts, the last Englishman remaining in a tropical village in Bougainville during its civil war in the 1990s. He begins to teach the local children by reading them Great Expectations, by Charles Dickens. Matilda, an imaginative young girl (played by newcomer Xzannjah), is transported into the story of the novel, believing that Dickens' character Pip is her friend. Matilda's \"Pip\" world is an extraordinary fusion of Dickens' Victorian London with the environment and people she knows on the island. This wildly imaginative hybrid place is set alongside the film's unflinching portrayal of the horrors of war. Matilda's passion for storytelling brings terror to the village when Pip's identity is misunderstood by the invading army. Ultimately, her courage and imagination must sustain her if she is to survive. (C) Freestyle",
+      "posters": {
+        "thumbnail": "http://content8.flixster.com/movie/11/18/11/11181186_tmb.jpg",
+        "profile": "http://content8.flixster.com/movie/11/18/11/11181186_tmb.jpg",
+        "detailed": "http://content8.flixster.com/movie/11/18/11/11181186_tmb.jpg",
+        "original": "http://content8.flixster.com/movie/11/18/11/11181186_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Hugh Laurie",
+          "id": "162746075"
+        },
+        {
+          "name": "Eka Darville",
+          "id": "770840761"
+        },
+        {
+          "name": "Florence Korokoro",
+          "id": "771419153"
+        },
+        {
+          "name": "Kerry Fox",
+          "id": "162689338"
+        },
+        {
+          "name": "Xzannjah Matsi",
+          "id": "771419527"
+        }
+      ],
+      "alternate_ids": {"imdb": "1485749"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771315324.json",
+        "alternate": "http://www.rottentomatoes.com/m/mr_pip/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771315324/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771315324/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771315324/similar.json"
+      }
+    },
+    {
+      "id": "771319208",
+      "title": "The Better Angels",
+      "year": 2014,
+      "mpaa_rating": "PG",
+      "runtime": 95,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_score": -1,
+        "audience_score": 76
+      },
+      "synopsis": "Indiana, 1817. The entire nation, only 40 years old and a few years removed from a second war of independence, is raw. Men, women, and children alike must battle nature and disease to survive in remote log cabins. This is young Abraham Lincoln's world. Spanning three years of the future president's childhood, The Better Angels explores his family, the hardships that shaped him, the tragedy that marked him forever, and the two women who guided him to immortality. Written and directed by A.J. Edwards, The Better Angels delves into visual and narrative poetry to express the Lincolns' world. The stark wilderness they inhabit comes alive in stunning black-and-white cinematography, and the story follows the lyrical course of the characters, who struggle physically and emotionally. They are forced to take on new additions to the family, learning what acceptance and empathy really mean. With an elegant touch and extreme attention to historical accuracy, Edwards shows the austerity of the era and reveals what shaped one of history's most distinctive leaders. (c) Amplify Releasing",
+      "posters": {
+        "thumbnail": "http://content9.flixster.com/movie/11/18/12/11181227_tmb.jpg",
+        "profile": "http://content9.flixster.com/movie/11/18/12/11181227_tmb.jpg",
+        "detailed": "http://content9.flixster.com/movie/11/18/12/11181227_tmb.jpg",
+        "original": "http://content9.flixster.com/movie/11/18/12/11181227_tmb.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Brit Marling",
+          "id": "770798848"
+        },
+        {
+          "name": "Diane Kruger",
+          "id": "162659094"
+        },
+        {
+          "name": "Jason Clarke",
+          "id": "359854726"
+        },
+        {
+          "name": "Wes Bentley",
+          "id": "162670889"
+        },
+        {
+          "name": "Jamie Harrold",
+          "id": "364641162"
+        }
+      ],
+      "alternate_ids": {"imdb": "2316868"},
+      "links": {
+        "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771319208.json",
+        "alternate": "http://www.rottentomatoes.com/m/the_better_angels/",
+        "cast": "http://api.rottentomatoes.com/api/public/v1.0/movies/771319208/cast.json",
+        "reviews": "http://api.rottentomatoes.com/api/public/v1.0/movies/771319208/reviews.json",
+        "similar": "http://api.rottentomatoes.com/api/public/v1.0/movies/771319208/similar.json"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=2",
+    "next": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=3",
+    "prev": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=1",
+    "alternate": "http://www.rottentomatoes.com/movie/upcoming"
+  },
+  "link_template": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit={results_per_page}&page={page_number}&country={country-code}"
+}
