@@ -51,8 +51,10 @@ public class Movie extends JSONParser {
             mTitle = jsonObject.getString(MovieDefinitionKeys.KEY_TITLE);
             mSynopsis = jsonObject.getString(MovieDefinitionKeys.KEY_SYNOPSIS);
             mYear = jsonObject.getInt(MovieDefinitionKeys.KEY_YEAR);
-            mAudienceRating = jsonObject.getInt(MovieDefinitionKeys.KEY_RATING_AUDIENCE);
-            mCriticsRating = jsonObject.getInt(MovieDefinitionKeys.KEY_RATING_CRITICS);
+
+            JSONObject ratings = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_RATING);
+            mAudienceRating = ratings.getInt(MovieDefinitionKeys.KEY_RATING_AUDIENCE);
+            mCriticsRating = ratings.getInt(MovieDefinitionKeys.KEY_RATING_CRITICS);
 
             JSONObject postersObject = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_POSTERS);
             mPoster = postersObject.getString(MovieDefinitionKeys.KEY_POSTER_THUMBNAIL);

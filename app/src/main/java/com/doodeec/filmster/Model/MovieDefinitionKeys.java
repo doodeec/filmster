@@ -13,7 +13,7 @@ public class MovieDefinitionKeys {
     protected static final String KEY_ID = "id";
     protected static final String KEY_TITLE = "title";
     protected static final String KEY_YEAR = "year";
-    protected static final String KEY_RATING = "rating";
+    protected static final String KEY_RATING = "ratings";
     protected static final String KEY_RATING_AUDIENCE = "audience_score";
     protected static final String KEY_RATING_CRITICS = "critics_score";
     protected static final String KEY_SYNOPSIS = "synopsis";

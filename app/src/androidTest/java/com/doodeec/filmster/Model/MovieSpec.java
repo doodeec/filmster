@@ -13,6 +13,17 @@ import org.json.JSONObject;
  */
 public class MovieSpec extends InstrumentationTestCase {
 
+    private JSONObject movieMock;
+    private Movie movie;
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+
+        movieMock = Mock.REST_MOVIE();
+        movie = new Movie(movieMock);
+    }
+
     public void testMovieJSONConstructor() throws Exception {
         Movie movie = new Movie(new JSONObject());
 
@@ -24,10 +35,6 @@ public class MovieSpec extends InstrumentationTestCase {
     }
 
     public void testMovieGetters() throws Exception {
-        JSONObject movieMock = Mock.REST_MOVIE();
-
-        Movie movie = new Movie(movieMock);
-
         assertEquals(movieMock.getString(MovieDefinitionKeys.KEY_ID), movie.getId());
         assertEquals(movieMock.getString(MovieDefinitionKeys.KEY_TITLE), movie.getTitle());
         assertEquals((Integer) movieMock.getInt(MovieDefinitionKeys.KEY_YEAR), movie.getYear());

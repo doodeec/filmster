@@ -9,15 +9,17 @@ import android.test.InstrumentationTestCase;
  */
 public class ErrorResponseSpec extends InstrumentationTestCase {
 
-    public void testErrorResponseConstructor() throws Exception {
-        ErrorResponse error = new ErrorResponse("Test");
+    private ErrorResponse error;
 
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+
+        error = new ErrorResponse("Test");
         assertNotNull(error);
     }
 
     public void testErrorResponseGetters() throws Exception {
-        ErrorResponse error = new ErrorResponse("Test");
-
         assertEquals("Test", error.getMessage());
     }
 }
