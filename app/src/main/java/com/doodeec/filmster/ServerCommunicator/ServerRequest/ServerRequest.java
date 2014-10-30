@@ -19,7 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.Arrays;
 
 /**
  * Created by Dusan Doodeec Bartos on 20.10.2014.
@@ -180,11 +179,11 @@ public class ServerRequest extends AsyncTask<Void, Integer, Void> implements Ser
                 inputStream = connection.getInputStream();
                 publishProgress(PROGRESS_CONTENT);
 
-                if (Arrays.asList(IMAGE_RESPONSE).contains(contentType)) {
+                if (isImage(contentType)) {
                     // decoding stream data back into image Bitmap
                     this.mImage = BitmapFactory.decodeStream(inputStream);
 
-                } else if (Arrays.asList(JSON_RESPONSE).contains(contentType)) {
+                } else if (isJSON(contentType)) {
                     // expected json response
                     this.mJsonObject = new JSONObject(parseReceivedData(inputStream));
 
@@ -269,6 +268,30 @@ public class ServerRequest extends AsyncTask<Void, Integer, Void> implements Ser
             default:
                 break;
         }
+    }
+
+    /**
+     * Determines if response type belongs to JSON
+     * @param contentType content type to check
+     * @return true if content type equals JSON type
+     */
+    private boolean isJSON(String contentType) {
+        for(String mime: JSON_RESPONSE) {
+            if (contentType.contains(mime)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determines if response type belongs to Image
+     * @param contentType content type to check
+     * @return true if content type equals Image type
+     */
+    private boolean isImage(String contentType) {
+        for(String mime: IMAGE_RESPONSE) {
+            if (contentType.contains(mime)) return true;
+        }
+        return false;
     }
 
     private String parseReceivedData(InputStream inputStream) throws Exception {

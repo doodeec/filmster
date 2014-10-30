@@ -13,6 +13,6 @@
 
     <!--Movie-->
     <string name="movie_poster">Movie poster</string>
-    <string name="movie_rating" formatted="false">%d \"%\"</string>
+    <string name="movie_rating" formatted="false">%d %%</string>
 
 </resources>

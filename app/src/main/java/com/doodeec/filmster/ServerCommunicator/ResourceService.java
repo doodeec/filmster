@@ -41,6 +41,7 @@ public class ResourceService {
     private static final String API_KEY = "38fnext9p73hh8m3hacx5s6c";
     private static final String PAGE_KEY = "page";
     private static final int PAGE_LIMIT = 5;
+    private static final String MOCK_AUTHORITY = "api.doodeec.com";
 
     private static HashMap<String, BitmapServerResponseListener> mImageRequestMap = new HashMap<String, BitmapServerResponseListener>();
 
@@ -52,7 +53,8 @@ public class ResourceService {
      */
     private static String buildPathForPage(int page) {
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme(SCHEME)
+
+/*        builder.scheme(SCHEME)
                 .authority(AUTHORITY)
                 .appendPath(PATH_PRIMARY)
                 .appendPath(PATH_SECONDARY)
@@ -62,6 +64,12 @@ public class ResourceService {
                 .appendPath(PATH_FILTER)
                 .appendQueryParameter(PAGE_LIMIT_PARAM_KEY, String.valueOf(PAGE_LIMIT))
                 .appendQueryParameter(API_PARAM_KEY, API_KEY)
+                .appendQueryParameter(PAGE_KEY, String.valueOf(page));*/
+
+        //mock server
+        builder.scheme(SCHEME)
+                .authority(MOCK_AUTHORITY)
+                .appendPath(PATH_KEY)
                 .appendQueryParameter(PAGE_KEY, String.valueOf(page));
 
         return builder.build().toString();
