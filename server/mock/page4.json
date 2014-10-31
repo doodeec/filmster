@@ -1,0 +1,89 @@
+{
+  "total": 18,
+  "movies": [
+    {
+      "id": "5465646335",
+      "title": "The Hunger Games: Mockingjay - Part 1",
+      "year": 2014,
+      "runtime": 125,
+      "release_dates": {"theater": "2014-11-21"},
+      "ratings": {
+      },
+      "synopsis": "Katniss Everdeen is in District 13 after she shatters the games forever. Under the leadership of President Coin and the advice of her trusted friends, Katniss spreads her wings as she fights to save Peeta and a nation moved by her courage.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMTcxNDI2NDAzNl5BMl5BanBnXkFtZTgwODM3MTc2MjE@._V1_SX140_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BMTcxNDI2NDAzNl5BMl5BanBnXkFtZTgwODM3MTc2MjE@._V1_SX214_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Jennifer Lawrence"
+        },
+        {
+          "name": "Josh Hutcherson"
+        },
+        {
+          "name": "Liam Hemsworth"
+        },
+        {
+          "name": "Woody Harrelson"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt1951265"
+      }
+    },
+    {
+      "id": "5462135864",
+      "title": "The Imitation Game",
+      "year": 2014,
+      "runtime": 114,
+      "release_dates": {"theater": "2014-11-21"},
+      "ratings": {
+        "critics_score": 67,
+        "audience_score": 82
+      },
+      "synopsis": "English mathematician and logician, Alan Turing, helps crack the Enigma code during World War II.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BNDkwNTEyMzkzNl5BMl5BanBnXkFtZTgwNTAwNzk3MjE@._V1_SY209_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BNDkwNTEyMzkzNl5BMl5BanBnXkFtZTgwNTAwNzk3MjE@._V1_SY317_CR0,0,214,317_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Benedict Cumberbatch"
+        },
+        {
+          "name": "Keira Knightley"
+        },
+        {
+          "name": "Matthew Goode"
+        },
+        {
+          "name": "Allen Leech"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2084970"
+      }
+    },
+    {
+      "id": "7713756465",
+      "title": "Happy Valley",
+      "year": 2014,
+      "runtime": 98,
+      "release_dates": {"theater": "2015-01-19"},
+      "ratings": {
+        "audience_score": 78
+      },
+      "synopsis": "The town of State College, the home of Penn State University, has long been known as Happy Valley, and its iconic figure for more than 40 years was Joe Paterno, the head coach of the school's storied football team. His program was lauded for not only its success on the field but also its students' achievements in the classroom. And Paterno took on mythic national stature as \"Saint Joe.\" But then, in November 2011, everything came crashing down. Longtime Assistant Coach Jerry Sandusky was charged with 40 counts of child sex abuse, setting off a firestorm of accusations about who failed to protect the children of Happy Valley. Was Sandusky's abuse an \"open secret\" in the town? Did Coach Paterno and the Penn State administration value their football program more than the lives of Sandusky's victims? Filmed over the course of the year after Sandusky's arrest as key players in the scandal agreed to share their stories, Happy Valley deconstructs the story we think we know to uncover a much more complicated and tragic tale.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMTk0OTkxMjkxOF5BMl5BanBnXkFtZTgwMzg1NjUxMzE@._V1_SY209_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BNjY1NjQ1NjMzNl5BMl5BanBnXkFtZTgwNzU0Mjc1MjE@._V1_SX214_AL_.jpg"
+      },
+      "abridged_cast": [
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2171902"
+      }
+    }
+  ]
+}

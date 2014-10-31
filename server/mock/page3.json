@@ -1,10 +1,164 @@
 {
-  "total": 15,
-  "movies": [],
-  "links": {
-    "self": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=3",
-    "prev": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&country=us&page=2",
-    "alternate": "http://www.rottentomatoes.com/movie/upcoming"
-  },
-  "link_template": "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit={results_per_page}&page={page_number}&country={country-code}"
+  "total": 18,
+  "movies": [
+    {
+      "id": "5465646335",
+      "title": "Dumb and Dumber To",
+      "year": 2014,
+      "runtime": 110,
+      "release_dates": {"theater": "2014-12-04"},
+      "ratings": {
+      },
+      "synopsis": "20 years after the dimwits set out on their first adventure, they head out in search of one of their long lost children in the hope of gaining a new kidney.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMTYxMzA0MzAyMF5BMl5BanBnXkFtZTgwMjMyNjcwMjE@._V1_SX140_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BMTYxMzA0MzAyMF5BMl5BanBnXkFtZTgwMjMyNjcwMjE@._V1_SX214_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Jim Carrey"
+        },
+        {
+          "name": "Jeff Daniels"
+        },
+        {
+          "name": "Laurie Holden"
+        },
+        {
+          "name": "Angela Kerecz"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2096672"
+      }
+    },
+    {
+      "id": "5462135864",
+      "title": "The Homesman",
+      "year": 2014,
+      "runtime": 122,
+      "release_dates": {"theater": "2014-11-07"},
+      "ratings": {
+        "critics_score": 69,
+        "audience_score": 67
+      },
+      "synopsis": "A claim jumper and a pioneer woman team up to escort three insane women from Nebraska to Iowa.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMTQ4NTkxOTEyMl5BMl5BanBnXkFtZTgwOTI1NzcwMzE@._V1_SY209_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BMTQ4NTkxOTEyMl5BMl5BanBnXkFtZTgwOTI1NzcwMzE@._V1_SY317_CR0,0,214,317_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Tommy Lee Jones"
+        },
+        {
+          "name": "Hilary Swank"
+        },
+        {
+          "name": "Grace Gummer"
+        },
+        {
+          "name": "Miranda Otto"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2398231"
+      }
+    },
+    {
+      "id": "7713756465",
+      "title": "Rosewater",
+      "year": 2014,
+      "runtime": 103,
+      "release_dates": {"theater": "2014-11-14"},
+      "ratings": {
+        "critics_score": 68,
+        "audience_score": 70
+      },
+      "synopsis": "A journalist is detained in Iran for more than 100 days and brutally interrogated in prison.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BNjY1NjQ1NjMzNl5BMl5BanBnXkFtZTgwNzU0Mjc1MjE@._V1_SX140_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BNjY1NjQ1NjMzNl5BMl5BanBnXkFtZTgwNzU0Mjc1MjE@._V1_SX214_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Gael Garcia Bernal"
+        },
+        {
+          "name": "Shohreh Aghdashloo"
+        },
+        {
+          "name": "Claire Foy"
+        },
+        {
+          "name": "Golshifteh Farahani"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2752688"
+      }
+    },
+    {
+      "id": "364793215897",
+      "title": "The Toy Soldiers",
+      "year": 2014,
+      "runtime": 143,
+      "release_dates": {"theater": "2014-11-14"},
+      "ratings": {
+      },
+      "synopsis": "On one evening in a decade of sex, drugs and rock 'n' roll, the innocence of youth and family unravels.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMjA0MTQ3MzczN15BMl5BanBnXkFtZTgwNjY1MzQxMTE@._V1_SY209_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BMjA0MTQ3MzczN15BMl5BanBnXkFtZTgwNjY1MzQxMTE@._V1_SY317_CR0,0,214,317_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Najarra Townsend"
+        },
+        {
+          "name": "Constance Brenneman"
+        },
+        {
+          "name": "Chandler Rylko"
+        },
+        {
+          "name": "Jeanette May Steiner"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt2219214"
+      }
+    },
+    {
+      "id": "771319208",
+      "title": "Saving Christmas",
+      "year": 2014,
+      "runtime": 80,
+      "release_dates": {"theater": "2014-11-14"},
+      "ratings": {
+      },
+      "synopsis": "Kirk is enjoying the annual Christmas party extravaganza thrown by his sister (Bridgette Ridenour) until he realizes he needs to help out Christian (Darren Doane), his brother-in-law who has a bad case of the bah-humbugs. Kirk's fresh look at Christmas provides Christian the chance to see Christ is where He has always been: at the center of our Christmas celebrations and traditions.",
+      "posters": {
+        "thumbnail": "http://ia.media-imdb.com/images/M/MV5BMTc3MTc3Njc5MV5BMl5BanBnXkFtZTgwNzU3NDE4MjE@._V1_SY209_CR0,0,140,209_AL_.jpg",
+        "detailed": "http://ia.media-imdb.com/images/M/MV5BMTc3MTc3Njc5MV5BMl5BanBnXkFtZTgwNzU3NDE4MjE@._V1_SY317_CR0,0,214,317_AL_.jpg"
+      },
+      "abridged_cast": [
+        {
+          "name": "Bridgette Cameron"
+        },
+        {
+          "name": "Kirk Cameron"
+        },
+        {
+          "name": "Darren Doane"
+        },
+        {
+          "name": "Raphi Henly"
+        }
+      ],
+      "links": {
+        "imdb": "http://www.imdb.com/title/tt4009460"
+      }
+    }
+  ]
 }

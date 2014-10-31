@@ -6,7 +6,9 @@ var express = require('express');
 var data = {
     page1: require('./mock/page1.json'),
     page2: require('./mock/page2.json'),
-    page3: require('./mock/page3.json')
+    page3: require('./mock/page3.json'),
+    page4: require('./mock/page4.json'),
+    pageEmpty: require('./mock/pageEmpty.json')
 };
 var app = express();
 
@@ -18,10 +20,10 @@ app.get('/movies', function(req, res){
     res.set('Content-Type', 'application/json');
     var page = req.param('page');
 
-    if (page && page > 0 && page < 4) {
+    if (page && page > 0 && page < 5) {
         res.send(data['page'+page]);
     } else {
-        res.send(data['page3']);
+        res.send(data['pageEmpty']);
     }
 });
 
