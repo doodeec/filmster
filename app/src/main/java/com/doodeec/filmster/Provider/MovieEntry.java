@@ -9,6 +9,7 @@ public class MovieEntry {
     public static final String ID_KEY = "id";
     public static final String TITLE_KEY = "title";
     public static final String SYNOPSIS_KEY = "synopsis";
+    public static final String THUMBNAIL_KEY = "thumbnail";
     public static final String POSTER_KEY = "poster";
     public static final String LINK_KEY = "link";
     public static final String YEAR_KEY = "year";
@@ -21,6 +22,7 @@ public class MovieEntry {
                     ID_KEY + DbHelper.TYPE_TEXT + " PRIMARY KEY, " +
                     TITLE_KEY + DbHelper.TYPE_TEXT + ", " +
                     SYNOPSIS_KEY + DbHelper.TYPE_TEXT + ", " +
+                    THUMBNAIL_KEY + DbHelper.TYPE_TEXT + ", " +
                     POSTER_KEY + DbHelper.TYPE_TEXT + ", " +
                     LINK_KEY + DbHelper.TYPE_TEXT + ", " +
                     YEAR_KEY + DbHelper.TYPE_INT + ", " +

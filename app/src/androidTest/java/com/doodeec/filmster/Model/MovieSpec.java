@@ -41,7 +41,8 @@ public class MovieSpec extends InstrumentationTestCase {
         assertEquals((Integer) movieMock.getJSONObject(MovieDefinitionKeys.KEY_RATING).getInt(MovieDefinitionKeys.KEY_RATING_AUDIENCE), movie.getAudienceRating());
         assertEquals((Integer) movieMock.getJSONObject(MovieDefinitionKeys.KEY_RATING).getInt(MovieDefinitionKeys.KEY_RATING_CRITICS), movie.getCriticsRating());
         assertEquals(movieMock.getString(MovieDefinitionKeys.KEY_SYNOPSIS), movie.getSynopsis());
-        assertEquals(movieMock.getJSONObject(MovieDefinitionKeys.KEY_POSTERS).getString(MovieDefinitionKeys.KEY_POSTER_THUMBNAIL), movie.getPoster());
-        assertEquals(movieMock.getJSONObject(MovieDefinitionKeys.KEY_LINKS).getString(MovieDefinitionKeys.KEY_LINK_ALTERNATE), movie.getLink());
+        assertEquals(movieMock.getJSONObject(MovieDefinitionKeys.KEY_POSTERS).getString(MovieDefinitionKeys.KEY_POSTER_THUMBNAIL), movie.getThumbnail());
+        assertEquals(movieMock.getJSONObject(MovieDefinitionKeys.KEY_POSTERS).getString(MovieDefinitionKeys.KEY_POSTER_DETAIL), movie.getPoster());
+        assertEquals(movieMock.getJSONObject(MovieDefinitionKeys.KEY_LINKS).getString(MovieDefinitionKeys.KEY_LINK_IMDB), movie.getLink());
     }
 }

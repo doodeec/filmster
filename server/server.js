@@ -27,4 +27,6 @@ app.get('/movies', function(req, res){
     }
 });
 
-app.listen(9875);
+app.listen(9875, function() {
+    console.log('API server listening on port 9875');
+});

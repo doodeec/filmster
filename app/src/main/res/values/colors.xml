@@ -2,6 +2,7 @@
 <resources>
     <color name="white">#FFFFFF</color>
 
+    <color name="baseFont">#333</color>
     <color name="emerald">#2db329</color>
     <color name="emerald_deep">#00733a</color>
     <color name="azure_deep">#0086d4</color>

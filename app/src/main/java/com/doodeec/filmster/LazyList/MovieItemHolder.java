@@ -48,9 +48,9 @@ public class MovieItemHolder {
         }
     }
 
-    public void setPoster(Bitmap poster) {
-        if (poster != null) {
-            mPosterView.setImageBitmap(poster);
+    public void setThumbnail(Bitmap thumbnail) {
+        if (thumbnail != null) {
+            mPosterView.setImageBitmap(thumbnail);
             mPosterView.setVisibility(View.VISIBLE);
         } else {
             mPosterView.setVisibility(View.GONE);

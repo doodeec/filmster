@@ -6,13 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.R;
-import com.doodeec.filmster.ServerCommunicator.ResourceService;
-import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
-import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
 
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.
@@ -23,8 +18,8 @@ import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
  */
 public class LazyList extends android.support.v4.app.ListFragment {
 
-    private LazyListAdapter mAdapter;
-    private ProgressBar mProgress;
+    protected LazyListAdapter mAdapter;
+    protected ProgressBar mProgress;
 
     public LazyList() {
 
@@ -47,39 +42,7 @@ public class LazyList extends android.support.v4.app.ListFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mProgress.setVisibility(View.VISIBLE);
-
-        //init resources
-        ResourceService.loadMovies(1, new ServerResponseListener<Movie[]>() {
-            @Override
-            public void onSuccess(Movie[] movies) {
-                Toast.makeText(getActivity(), "Movies loaded", Toast.LENGTH_SHORT).show();
-
-                mAdapter = new LazyListAdapter(movies, LazyList.this);
-                setListAdapter(mAdapter);
-
-                mProgress.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onError(ErrorResponse error) {
-                //TODO toast
-                Toast.makeText(getActivity(), "Load movies error", Toast.LENGTH_SHORT).show();
-                mProgress.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onProgress(Integer progress) {
-                //TODO progressbar?
-                mProgress.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled() {
-                //TODO toast?
-                Toast.makeText(getActivity(), "Load movies cancelled", Toast.LENGTH_SHORT).show();
-                mProgress.setVisibility(View.GONE);
-            }
-        });
+        initData();
     }
 
     protected void movieImageLoaded(int position, Bitmap movieImage) {
@@ -88,7 +51,13 @@ public class LazyList extends android.support.v4.app.ListFragment {
         // update only if view is visible
         if (viewAtPosition != null) {
             MovieItemHolder holder = (MovieItemHolder) viewAtPosition.getTag();
-            holder.setPoster(movieImage);
+            holder.setThumbnail(movieImage);
         }
+    }
+
+    /**
+     * Subclasses should override this method to load data at this point
+     */
+    protected void initData() {
     }
 }

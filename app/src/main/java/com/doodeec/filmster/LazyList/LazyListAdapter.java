@@ -59,12 +59,12 @@ public class LazyListAdapter extends BaseAdapter {
         holder.setRating(movie.getAudienceRating());
 
         // load image - either from cache, or load from service
-        if (movie.getPoster() == null) {
+        if (movie.getThumbnail() == null) {
             // poster link not available
-        } else if (ImageCache.getBitmapFromCache(movie.getPoster()) != null) {
-            holder.setPoster(ImageCache.getBitmapFromCache(movie.getPoster()));
+        } else if (ImageCache.getBitmapFromCache(movie.getThumbnail()) != null) {
+            holder.setThumbnail(ImageCache.getBitmapFromCache(movie.getThumbnail()));
         } else {
-            ResourceService.loadImage(movie.getPoster(), new BitmapServerResponseListener() {
+            ResourceService.loadImage(movie.getThumbnail(), new BitmapServerResponseListener() {
                 @Override
                 public void onSuccess(Bitmap loadedImage) {
                     if (mLazyList.get() != null) {

@@ -48,6 +48,7 @@
         android:layout_marginLeft="@dimen/padding"
         android:maxLines="1"
         android:ellipsize="end"
+        android:textColor="@color/baseFont"
         android:textSize="@dimen/rating_text"
         android:text="80%"/>
 
