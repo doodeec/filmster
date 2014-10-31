@@ -6,8 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.doodeec.filmster.ApplicationState.AppState;
+import com.doodeec.filmster.ApplicationState.ConnectionStateChange;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements ConnectionStateChange {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +18,17 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppState.setCurrentActivity(this);
+    }
+
+    @Override
+    protected void onPause() {
+        AppState.setCurrentActivity(null);
+        super.onPause();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,5 +45,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onConnectionGained() {
+        //TODO handle connection gained
+    }
+
+    @Override
+    public void onConnectionLost() {
+        //TODO handle connection lost
     }
 }

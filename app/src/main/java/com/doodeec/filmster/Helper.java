@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.doodeec.filmster.ApplicationState.AppState;
+
 /**
  * Created by Dusan Doodeec Bartos on 26.10.2014.
  *

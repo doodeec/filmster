@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.doodeec.filmster.AppState;
+import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.ImageCache;
 import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.R;

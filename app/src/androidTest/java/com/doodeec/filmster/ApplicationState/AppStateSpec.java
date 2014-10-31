@@ -1,4 +1,4 @@
-package com.doodeec.filmster;
+package com.doodeec.filmster.ApplicationState;
 
 import android.test.InstrumentationTestCase;
 

@@ -15,4 +15,9 @@
     <string name="movie_poster">Movie poster</string>
     <string name="movie_rating" formatted="false">%d %%</string>
 
+    <!--Hint-->
+    <string name="movie_title_hint">Movie Title</string>
+    <string name="movie_year_hint">2014</string>
+    <string name="movie_rating_hint">80 %</string>
+
 </resources>
