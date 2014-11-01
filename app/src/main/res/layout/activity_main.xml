@@ -9,7 +9,7 @@
         android:id="@+id/lazy_list"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:name="com.doodeec.filmster.MovieListFragment"
+        android:name="com.doodeec.filmster.MovieList.MovieListFragment"
         android:layout_weight="1"
         tools:layout="@layout/lazy_list_fragment"/>
 

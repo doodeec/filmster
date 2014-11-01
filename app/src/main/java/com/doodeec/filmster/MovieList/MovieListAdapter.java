@@ -1,13 +1,14 @@
-package com.doodeec.filmster;
+package com.doodeec.filmster.MovieList;
 
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.doodeec.filmster.ImageCache;
 import com.doodeec.filmster.LazyList.LazyListAdapter;
-import com.doodeec.filmster.LazyList.MovieItemHolder;
 import com.doodeec.filmster.Model.Movie;
+import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
@@ -31,16 +32,16 @@ public class MovieListAdapter extends LazyListAdapter<Movie> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        MovieItemHolder holder;
+        MovieListItemHolder holder;
 
         // init holder pattern
         if (convertView == null) {
             v = mInflater.inflate(R.layout.movie_list_item, null);
-            holder = new MovieItemHolder(v);
+            holder = new MovieListItemHolder(v);
             v.setTag(holder);
         }
 
-        holder = (MovieItemHolder) v.getTag();
+        holder = (MovieListItemHolder) v.getTag();
 
         Movie movie = getItem(position);
 

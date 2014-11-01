@@ -29,16 +29,15 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     public static final int REASON_REQUEST_CANCELLED = 8;
 
     private static final float SHOWN_LOADER_POSITION = 0;
-//    private static final float HIDDEN_LOADER_POSITION = 1f;
     private static final float SHOWN_LOADER_ALPHA = 1f;
     private static final float HIDDEN_LOADER_ALPHA = 0;
     private static final int LOADER_ANIMATION_DURATION = 300;
 
-    private Integer maxDataLength;
+    protected Integer maxDataLength;
     // last currently loaded page
-    private int mPage;
-    private boolean mLoading = false;
-    private boolean mBlockLazyLoad = false;
+    protected int mPage;
+    protected boolean mLoading = false;
+    protected boolean mBlockLazyLoad = false;
     protected final List<T> mData = new ArrayList<T>();
     protected LazyListAdapter mAdapter;
     protected RelativeLayout mProgress;
@@ -101,7 +100,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      *
      * @param page page to load
      */
-    protected void loadPage(int page) {
+    protected synchronized void loadPage(int page) {
         mLoading = true;
         mProgress.setVisibility(View.VISIBLE);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
@@ -149,6 +148,8 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     protected synchronized void onDataLoadingFailed(int reason) {
         mLoading = false;
 
+        //TODO prompt request repeat
+
         switch (reason) {
             case REASON_LIST_END:
                 Toast.makeText(getActivity(), "End of the list", Toast.LENGTH_SHORT).show();
@@ -189,7 +190,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      */
     protected void setMaxDataLength(Integer maxLength) {
         maxDataLength = maxLength;
-        if (maxDataLength != null && mData.size() < maxDataLength) {
+        if (maxDataLength != null && mData.size() <= maxDataLength) {
             mBlockLazyLoad = false;
         }
     }

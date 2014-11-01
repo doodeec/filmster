@@ -22,10 +22,6 @@ public class MovieSpec extends InstrumentationTestCase {
 
         movieMock = Mock.REST_MOVIE();
         movie = new Movie(movieMock);
-    }
-
-    public void testMovieJSONConstructor() throws Exception {
-        Movie movie = new Movie(new JSONObject());
 
         assertNotNull(movie);
     }

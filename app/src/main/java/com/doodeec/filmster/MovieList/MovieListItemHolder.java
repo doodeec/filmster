@@ -1,4 +1,4 @@
-package com.doodeec.filmster.LazyList;
+package com.doodeec.filmster.MovieList;
 
 import android.graphics.Bitmap;
 import android.view.View;
@@ -13,14 +13,14 @@ import com.doodeec.filmster.R;
  *
  * Movie item - holder pattern
  */
-public class MovieItemHolder {
+public class MovieListItemHolder {
 
     private TextView mTitleView;
     private TextView mYearView;
     private TextView mRatingView;
     private ImageView mPosterView;
 
-    public MovieItemHolder(View view) {
+    public MovieListItemHolder(View view) {
         mTitleView = (TextView) view.findViewById(R.id.movie_title);
         mYearView = (TextView) view.findViewById(R.id.movie_year);
         mRatingView = (TextView) view.findViewById(R.id.movie_rating);

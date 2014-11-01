@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.doodeec.filmster.ApplicationState.AppState;
 
@@ -66,21 +65,5 @@ public class LazyListAdapter<T> extends BaseAdapter {
     @Override
     public T getItem(int position) {
         return mData.get(position);
-    }
-
-    @SuppressWarnings("unused")
-    private class LazyListHolder {
-        private TextView mText;
-
-        protected LazyListHolder(View v) {
-            mText = (TextView) v.findViewById(android.R.id.text1);
-            if (mText == null) {
-                throw new AssertionError("Lazy List holder has incorrect layout");
-            }
-        }
-
-        public void setText(String text) {
-            mText.setText(text);
-        }
     }
 }

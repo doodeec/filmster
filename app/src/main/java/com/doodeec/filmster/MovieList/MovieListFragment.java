@@ -1,4 +1,4 @@
-package com.doodeec.filmster;
+package com.doodeec.filmster.MovieList;
 
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentTransaction;
@@ -8,8 +8,9 @@ import android.widget.Toast;
 
 import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.LazyList.LazyList;
-import com.doodeec.filmster.LazyList.MovieItemHolder;
 import com.doodeec.filmster.Model.Movie;
+import com.doodeec.filmster.MovieDetailFragment;
+import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
@@ -31,18 +32,12 @@ public class MovieListFragment extends LazyList<Movie> {
         initClickListener();
 
         if (AppState.getIsApplicationOnline()) {
-            loadDataForPage(1);
+            loadPage(1);
         } else {
             Toast.makeText(getActivity(), "Internet connection unavailable", Toast.LENGTH_SHORT).show();
             onDataLoadingFailed(REASON_CONNECTION_LOST);
             //TODO load from database
         }
-    }
-
-    @Override
-    protected void loadPage(int page) {
-        super.loadPage(page);
-        loadDataForPage(page);
     }
 
     /**
@@ -59,7 +54,7 @@ public class MovieListFragment extends LazyList<Movie> {
 
                 // update only if view is visible
                 if (viewAtPosition != null) {
-                    MovieItemHolder holder = (MovieItemHolder) viewAtPosition.getTag();
+                    MovieListItemHolder holder = (MovieListItemHolder) viewAtPosition.getTag();
                     holder.setThumbnail(movieImage);
                 }
             }
@@ -71,7 +66,10 @@ public class MovieListFragment extends LazyList<Movie> {
      *
      * @param page page to load
      */
-    private synchronized void loadDataForPage(final int page) {
+    @Override
+    protected synchronized void loadPage(final int page) {
+        super.loadPage(page);
+
         ResourceService.loadMovies(page, new ServerResponseListener<Movie[]>() {
             @Override
             public void onSuccess(Movie[] movies) {
