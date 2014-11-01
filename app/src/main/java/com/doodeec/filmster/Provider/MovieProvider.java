@@ -21,6 +21,9 @@ public class MovieProvider {
 
     private static SQLiteDatabase db;
 
+    /**
+     * Opens database if not opened
+     */
     private static void openDbConnection() {
         if (db == null || !db.isOpen()) {
             DbHelper mDbHelper = new DbHelper(AppState.getContext());
@@ -28,6 +31,10 @@ public class MovieProvider {
         }
     }
 
+    /**
+     * Reads movies from database
+     * @return movie list
+     */
     public static List<Movie> getSavedMovies() {
         openDbConnection();
         List<Movie> movies;
@@ -47,6 +54,10 @@ public class MovieProvider {
         return movies;
     }
 
+    /**
+     * Saves movie list to database
+     * @param movies list to save
+     */
     public static void saveMoviesToDb(List<Movie> movies) {
         openDbConnection();
 
