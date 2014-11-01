@@ -29,18 +29,18 @@ public class ResourceService {
 
     //    http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?page_limit=5&page=1&country=us&apikey=38fnext9p73hh8m3hacx5s6c
     private static final String SCHEME = "http";
-    private static final String AUTHORITY = "api.rottentomatoes.com";
-    private static final String PATH_PRIMARY = "api";
-    private static final String PATH_SECONDARY = "public";
-    private static final String PATH_VERSION = "v1.0";
-    private static final String PATH_TYPE = "lists";
+//    private static final String AUTHORITY = "api.rottentomatoes.com";
+//    private static final String PATH_PRIMARY = "api";
+//    private static final String PATH_SECONDARY = "public";
+//    private static final String PATH_VERSION = "v1.0";
+//    private static final String PATH_TYPE = "lists";
     private static final String PATH_KEY = "movies";
-    private static final String PATH_FILTER = "upcoming.json";
-    private static final String PAGE_LIMIT_PARAM_KEY = "page_limit";
-    private static final String API_PARAM_KEY = "apikey";
-    private static final String API_KEY = "38fnext9p73hh8m3hacx5s6c";
+//    private static final String PATH_FILTER = "upcoming.json";
+//    private static final String PAGE_LIMIT_PARAM_KEY = "page_limit";
+//    private static final String API_PARAM_KEY = "apikey";
+//    private static final String API_KEY = "38fnext9p73hh8m3hacx5s6c";
     private static final String PAGE_KEY = "page";
-    private static final int PAGE_LIMIT = 5;
+//    private static final int PAGE_LIMIT = 5;
     private static final String MOCK_AUTHORITY = "api.doodeec.com";
 
     private static HashMap<String, BitmapServerResponseListener> mImageRequestMap = new HashMap<String, BitmapServerResponseListener>();

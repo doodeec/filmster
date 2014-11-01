@@ -159,7 +159,6 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
                 Toast.makeText(getActivity(), "Server error", Toast.LENGTH_SHORT).show();
                 break;
             case REASON_CONNECTION_LOST:
-                Toast.makeText(getActivity(), "Connection lost", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Toast.makeText(getActivity(), "Unknown error", Toast.LENGTH_SHORT).show();
@@ -190,8 +189,8 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      */
     protected void setMaxDataLength(Integer maxLength) {
         maxDataLength = maxLength;
-        if (maxDataLength != null && mData.size() <= maxDataLength) {
-            mBlockLazyLoad = false;
+        if (maxDataLength != null) {
+            mBlockLazyLoad = mData.size() <= maxDataLength;
         }
     }
 

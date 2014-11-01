@@ -1,7 +1,6 @@
 package com.doodeec.filmster.MovieList;
 
 import android.graphics.Bitmap;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -9,8 +8,7 @@ import android.widget.Toast;
 import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.Model.Movie;
-import com.doodeec.filmster.MovieDetailFragment;
-import com.doodeec.filmster.R;
+import com.doodeec.filmster.Provider.MovieProvider;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
@@ -24,8 +22,6 @@ import java.util.Arrays;
  */
 public class MovieListFragment extends LazyList<Movie> {
 
-    private static final String DETAIL_TAG = "detail";
-
     @Override
     protected void initAdapter() {
         mAdapter = new MovieListAdapter(mData, this);
@@ -36,7 +32,16 @@ public class MovieListFragment extends LazyList<Movie> {
         } else {
             Toast.makeText(getActivity(), "Internet connection unavailable", Toast.LENGTH_SHORT).show();
             onDataLoadingFailed(REASON_CONNECTION_LOST);
-            //TODO load from database
+
+            // block lazy load scrolling
+            setMaxDataLength(0);
+
+            // read from DB
+            mData.addAll(MovieProvider.getSavedMovies());
+
+            if (mData.size() > 0) {
+                Toast.makeText(getActivity(), "Movies loaded from database", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -76,6 +81,9 @@ public class MovieListFragment extends LazyList<Movie> {
                 if (movies.length > 0) {
                     mData.addAll(Arrays.asList(movies));
                     onDataLoadingCompleted(page);
+
+                    //save to DB
+                    MovieProvider.saveMoviesToDb(mData);
                 } else {
                     onDataLoadingFailed(REASON_LIST_END);
                 }
@@ -83,7 +91,6 @@ public class MovieListFragment extends LazyList<Movie> {
 
             @Override
             public void onError(ErrorResponse error) {
-                //TODO disconnected?
                 onDataLoadingFailed(LazyList.REASON_SERVER_ERROR);
             }
 
@@ -106,14 +113,7 @@ public class MovieListFragment extends LazyList<Movie> {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MovieDetailFragment fragment = new MovieDetailFragment();
-                fragment.setMovie((Movie) mAdapter.getItem(position));
-
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_right, R.anim.slide_from_right, R.anim.slide_to_right);
-                transaction.add(android.R.id.content, fragment, DETAIL_TAG);
-                transaction.addToBackStack(DETAIL_TAG);
-                transaction.commit();
+                ((MovieListActivityInterface) getActivity()).onDisplayDetail((Movie) mAdapter.getItem(position));
             }
         });
     }

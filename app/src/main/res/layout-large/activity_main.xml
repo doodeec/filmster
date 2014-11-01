@@ -14,4 +14,12 @@
         android:layout_weight="1"
         tools:layout="@layout/lazy_list_fragment"/>
 
+    <fragment
+        android:id="@+id/movie_detail"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:name="com.doodeec.filmster.MovieDetail.MovieDetailFragment"
+        android:layout_weight="2"
+        tools:layout="@layout/movie_detail"/>
+
 </LinearLayout>
