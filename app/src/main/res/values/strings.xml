@@ -19,5 +19,7 @@
     <string name="movie_title_hint">Movie Title</string>
     <string name="movie_year_hint">2014</string>
     <string name="movie_rating_hint">80 %</string>
+    <string name="movie_synopsis_hint">This movie is about something, and this something is very
+    exciting so you should definitely see this movie</string>
 
 </resources>

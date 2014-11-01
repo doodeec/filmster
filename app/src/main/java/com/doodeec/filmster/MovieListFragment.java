@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.LazyList.LazyListAdapter;
 import com.doodeec.filmster.Model.Movie;
@@ -24,38 +25,43 @@ public class MovieListFragment extends LazyList {
     @Override
     protected void initData() {
         //init resources
-        ResourceService.loadMovies(1, new ServerResponseListener<Movie[]>() {
-            @Override
-            public void onSuccess(Movie[] movies) {
-                Toast.makeText(getActivity(), "Movies loaded", Toast.LENGTH_SHORT).show();
+        if (AppState.getIsApplicationOnline()) {
+            ResourceService.loadMovies(1, new ServerResponseListener<Movie[]>() {
+                @Override
+                public void onSuccess(Movie[] movies) {
+                    Toast.makeText(getActivity(), "Movies loaded", Toast.LENGTH_SHORT).show();
 
-                mAdapter = new LazyListAdapter(movies, MovieListFragment.this);
-                setListAdapter(mAdapter);
+                    mAdapter = new LazyListAdapter(movies, MovieListFragment.this);
+                    setListAdapter(mAdapter);
 
-                mProgress.setVisibility(View.GONE);
-                dataLoaded();
-            }
+                    mProgress.setVisibility(View.GONE);
+                    dataLoaded();
+                }
 
-            @Override
-            public void onError(ErrorResponse error) {
-                //TODO toast
-                Toast.makeText(getActivity(), "Load movies error", Toast.LENGTH_SHORT).show();
-                mProgress.setVisibility(View.GONE);
-            }
+                @Override
+                public void onError(ErrorResponse error) {
+                    //TODO toast
+                    Toast.makeText(getActivity(), "Load movies error", Toast.LENGTH_SHORT).show();
+                    mProgress.setVisibility(View.GONE);
+                }
 
-            @Override
-            public void onProgress(Integer progress) {
-                //TODO progressbar?
-                mProgress.setVisibility(View.GONE);
-            }
+                @Override
+                public void onProgress(Integer progress) {
+                    //TODO progressbar?
+                    mProgress.setVisibility(View.GONE);
+                }
 
-            @Override
-            public void onCancelled() {
-                //TODO toast?
-                Toast.makeText(getActivity(), "Load movies cancelled", Toast.LENGTH_SHORT).show();
-                mProgress.setVisibility(View.GONE);
-            }
-        });
+                @Override
+                public void onCancelled() {
+                    //TODO toast?
+                    Toast.makeText(getActivity(), "Load movies cancelled", Toast.LENGTH_SHORT).show();
+                    mProgress.setVisibility(View.GONE);
+                }
+            });
+        } else {
+            Toast.makeText(getActivity(), "Internet connection unavailable", Toast.LENGTH_SHORT).show();
+            //TODO load from database
+        }
     }
 
     private void dataLoaded() {

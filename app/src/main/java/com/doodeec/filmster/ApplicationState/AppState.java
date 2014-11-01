@@ -24,8 +24,10 @@ public class AppState extends Application {
         public void onReceive(Context context, Intent intent) {
             if (mCurrentActivity != null) {
                 if (Helper.isOnline()) {
+                    mOnline = true;
                     mCurrentActivity.onConnectionGained();
                 } else {
+                    mOnline = false;
                     mCurrentActivity.onConnectionLost();
                 }
             }
@@ -36,6 +38,7 @@ public class AppState extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+        mOnline = Helper.isOnline();
 
         // register network state change listener
         IntentFilter networkIntentFilter = new IntentFilter();
@@ -49,10 +52,6 @@ public class AppState extends Application {
 
     public static Context getContext() {
         return mContext;
-    }
-
-    public static void setIsApplicationOnline(boolean isOnline) {
-        mOnline = isOnline;
     }
 
     public static boolean getIsApplicationOnline() {
