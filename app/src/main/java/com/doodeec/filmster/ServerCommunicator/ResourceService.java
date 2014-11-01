@@ -113,7 +113,6 @@ public class ResourceService {
 
             @Override
             public void onProgress(Integer progress) {
-                Log.d("FILMSTER", "Movies loading: " + progress + "%");
                 responseListener.onProgress(progress);
             }
 
@@ -136,53 +135,53 @@ public class ResourceService {
      * @return request interface
      */
     public static ServerRequestInterface loadImage(final String url, final BitmapServerResponseListener responseListener) {
-        Bitmap cachedImage = ImageCache.getBitmapFromCache(url);
-
-        if (cachedImage != null) {
-            // do not load image which was cached before from server, return cached one
-            responseListener.onSuccess(cachedImage);
-            return null;
-        } else if (mImageRequestMap.containsKey(url)) {
-            //TODO multiple response listeners chaining support?
-            return null;
-        } else {
-            // if image is not cached, load it from server and cache if there is valid response (Bitmap is not null)
-            ServerRequest request = new ServerRequest(url, ServerRequest.RequestType.GET, new BitmapServerResponseListener() {
-                @Override
-                public void onSuccess(Bitmap loadedImage) {
-                    //intercept success response to cache image to LRU cache
-                    Log.d("FILMSTER", "Image loaded: " + url);
-                    ImageCache.addBitmapToCache(url, loadedImage);
-                    mImageRequestMap.remove(url);
-                    responseListener.onSuccess(loadedImage);
-                }
-
-                @Override
-                public void onError(ErrorResponse error) {
-                    Log.e("FILMSTER", "Image can not be loaded: " + error.getMessage());
-                    mImageRequestMap.remove(url);
-                    responseListener.onError(error);
-                }
-
-                @Override
-                public void onProgress(Integer progress) {
-                    Log.d("FILMSTER", "Image loading: " + progress + "% (" + url + ")");
-                    mImageRequestMap.remove(url);
-                    responseListener.onProgress(progress);
-                }
-
-                @Override
-                public void onCancelled() {
-                    Log.d("FILMSTER", "Image loading cancelled");
-                    mImageRequestMap.remove(url);
-                    responseListener.onCancelled();
-                }
-            });
-
+        if (!mImageRequestMap.containsKey(url)) {
             mImageRequestMap.put(url, responseListener);
 
-            request.execute();
-            return request;
+            Bitmap cachedImage = ImageCache.getBitmapFromCache(url);
+            if (cachedImage != null) {
+                // do not load image which was cached before from server, return cached one
+                responseListener.onSuccess(cachedImage);
+                return null;
+            } else {
+                // if image is not cached, load it from server and cache if there is valid response (Bitmap is not null)
+                ServerRequest request = new ServerRequest(url, ServerRequest.RequestType.GET, new BitmapServerResponseListener() {
+                    @Override
+                    public void onSuccess(Bitmap loadedImage) {
+                        //intercept success response to cache image to LRU cache
+                        Log.d("FILMSTER", "Image loaded: " + url);
+                        ImageCache.addBitmapToCache(url, loadedImage);
+                        mImageRequestMap.remove(url);
+                        responseListener.onSuccess(loadedImage);
+                    }
+
+                    @Override
+                    public void onError(ErrorResponse error) {
+                        Log.e("FILMSTER", "Image can not be loaded: " + error.getMessage());
+                        mImageRequestMap.remove(url);
+                        responseListener.onError(error);
+                    }
+
+                    @Override
+                    public void onProgress(Integer progress) {
+                        Log.d("FILMSTER", "Image loading: " + progress + "% (" + url + ")");
+                        mImageRequestMap.remove(url);
+                        responseListener.onProgress(progress);
+                    }
+
+                    @Override
+                    public void onCancelled() {
+                        Log.d("FILMSTER", "Image loading cancelled");
+                        mImageRequestMap.remove(url);
+                        responseListener.onCancelled();
+                    }
+                });
+
+                request.execute();
+                return request;
+            }
         }
+
+        return null;
     }
 }

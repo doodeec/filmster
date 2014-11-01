@@ -1,22 +1,15 @@
 package com.doodeec.filmster.LazyList;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.doodeec.filmster.ApplicationState.AppState;
-import com.doodeec.filmster.ImageCache;
-import com.doodeec.filmster.Model.Movie;
-import com.doodeec.filmster.R;
-import com.doodeec.filmster.ServerCommunicator.ResourceService;
-import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
-import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
 
 import java.lang.ref.WeakReference;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,71 +17,45 @@ import java.util.List;
  *
  * Lazy loading list adapter
  */
-public class LazyListAdapter extends BaseAdapter {
+public class LazyListAdapter<T> extends BaseAdapter {
 
-    private List<Movie> mMovies;
-    private LayoutInflater mInflater;
-    private WeakReference<LazyList> mLazyList;
+    protected List<T> mData;
+    protected LayoutInflater mInflater;
+    protected WeakReference<LazyList> mLazyList;
 
-    public LazyListAdapter(Movie[] movies, LazyList list) {
-        mMovies = Arrays.asList(movies);
+    public LazyListAdapter(List<T> data, LazyList list) {
+        mData = data;
         mLazyList = new WeakReference<LazyList>(list);
 
         mInflater = (LayoutInflater) AppState.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    /**
+     * Subclasses should override this method to show custom view
+     * @see android.widget.BaseAdapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
+    @SuppressWarnings("InflateParams")
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        MovieItemHolder holder;
+        LazyListHolder holder;
 
         // init holder pattern
         if (convertView == null) {
-            v = mInflater.inflate(R.layout.movie_list_item, null);
-            holder = new MovieItemHolder(v);
+            v = mInflater.inflate(android.R.layout.simple_list_item_1, null);
+            holder = new LazyListHolder(v);
             v.setTag(holder);
         }
 
-        holder = (MovieItemHolder) v.getTag();
+        holder = (LazyListHolder) v.getTag();
 
-        Movie movie = getItem(position);
-
-        // set basic movie information
-        holder.setTitle(movie.getTitle());
-        holder.setYear(movie.getYear());
-        holder.setRating(movie.getAudienceRating());
-
-        // load image - either from cache, or load from service
-        if (movie.getThumbnail() == null) {
-            // poster link not available
-        } else if (ImageCache.getBitmapFromCache(movie.getThumbnail()) != null) {
-            holder.setThumbnail(ImageCache.getBitmapFromCache(movie.getThumbnail()));
-        } else {
-            ResourceService.loadImage(movie.getThumbnail(), new BitmapServerResponseListener() {
-                @Override
-                public void onSuccess(Bitmap loadedImage) {
-                    if (mLazyList.get() != null) {
-                        mLazyList.get().movieImageLoaded(position, loadedImage);
-                    }
-                }
-
-                @Override
-                public void onError(ErrorResponse error) {}
-
-                @Override
-                public void onProgress(Integer progress) {}
-
-                @Override
-                public void onCancelled() {}
-            });
-        }
-
+        holder.setText(String.valueOf(mData.get(position)));
         return v;
     }
 
     @Override
     public int getCount() {
-        return mMovies.size();
+        return mData.size();
     }
 
     @Override
@@ -97,7 +64,23 @@ public class LazyListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Movie getItem(int position) {
-        return mMovies.get(position);
+    public T getItem(int position) {
+        return mData.get(position);
+    }
+
+    @SuppressWarnings("unused")
+    private class LazyListHolder {
+        private TextView mText;
+
+        protected LazyListHolder(View v) {
+            mText = (TextView) v.findViewById(android.R.id.text1);
+            if (mText == null) {
+                throw new AssertionError("Lazy List holder has incorrect layout");
+            }
+        }
+
+        public void setText(String text) {
+            mText.setText(text);
+        }
     }
 }

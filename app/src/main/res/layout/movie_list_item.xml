@@ -40,6 +40,7 @@
             android:ellipsize="end"
             android:textSize="@dimen/year_text"
             android:textColor="@color/baseFont"
+            android:textColorHint="@color/hint"
             android:hint="@string/movie_year_hint"/>
     </LinearLayout>
 
@@ -52,6 +53,7 @@
         android:ellipsize="end"
         android:textColor="@color/baseFont"
         android:textSize="@dimen/rating_text"
+        android:textColorHint="@color/hint"
         android:hint="@string/movie_rating_hint"/>
 
 </LinearLayout>

@@ -12,6 +12,9 @@ import com.doodeec.filmster.ApplicationState.AppState;
  * Helper for resource handling
  */
 public class Helper {
+
+    public static final String EMPTY_STRING = "";
+
     /**
      * @param stringId string resource id
      * @return string

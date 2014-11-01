@@ -38,6 +38,8 @@ public class MovieItemHolder {
     public void setYear(Integer year) {
         if (year != null) {
             mYearView.setText(String.valueOf(year));
+        } else {
+            mYearView.setText(Helper.EMPTY_STRING);
         }
     }
 
@@ -45,6 +47,8 @@ public class MovieItemHolder {
         if (rating != null) {
             mRatingView.setText(String.format(Helper.getString(R.string.movie_rating), rating));
             mRatingView.setTextColor(getRatingColor(rating));
+        } else {
+            mRatingView.setText(Helper.EMPTY_STRING);
         }
     }
 
