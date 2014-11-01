@@ -70,7 +70,7 @@ public class Movie extends JSONParser {
             JSONObject linksObject = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_LINKS);
             mLink = linksObject.getString(MovieDefinitionKeys.KEY_LINK_IMDB);
         } catch (JSONException e) {
-            Log.e("FILMSTER", "Movie definition not valid " + e.getMessage());
+            Log.e("FILMSTER", "Movie definition not valid: " + e.getMessage());
         }
     }
 

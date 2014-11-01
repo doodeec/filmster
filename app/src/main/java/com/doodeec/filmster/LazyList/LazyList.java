@@ -29,11 +29,12 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     public static final int REASON_REQUEST_CANCELLED = 8;
 
     private static final float SHOWN_LOADER_POSITION = 0;
-    private static final float HIDDEN_LOADER_POSITION = 1f;
+//    private static final float HIDDEN_LOADER_POSITION = 1f;
     private static final float SHOWN_LOADER_ALPHA = 1f;
     private static final float HIDDEN_LOADER_ALPHA = 0;
     private static final int LOADER_ANIMATION_DURATION = 300;
 
+    private Integer maxDataLength;
     // last currently loaded page
     private int mPage;
     private boolean mLoading = false;
@@ -127,7 +128,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
             public void run() {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                     mProgress.animate()
-                            .translationY(HIDDEN_LOADER_POSITION)
+                            .translationY(mProgress.getHeight())
                             .alpha(HIDDEN_LOADER_ALPHA)
                             .setDuration(LOADER_ANIMATION_DURATION);
                 } else {
@@ -135,6 +136,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
                 }
 
                 mAdapter.notifyDataSetChanged();
+                checkMaxDataLength();
             }
         });
     }
@@ -169,7 +171,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
             public void run() {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                     mProgress.animate()
-                            .translationY(HIDDEN_LOADER_POSITION)
+                            .translationY(mProgress.getHeight())
                             .alpha(HIDDEN_LOADER_ALPHA)
                             .setDuration(LOADER_ANIMATION_DURATION);
                 } else {
@@ -177,5 +179,28 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
                 }
             }
         });
+    }
+
+
+    /**
+     * Sets maximal data length to be possible to load with lazy loading
+     * If data length oversizes max length, lazy loading by scroll will be further disabled
+     * @param maxLength max length to set
+     */
+    protected void setMaxDataLength(Integer maxLength) {
+        maxDataLength = maxLength;
+        if (maxDataLength != null && mData.size() < maxDataLength) {
+            mBlockLazyLoad = false;
+        }
+    }
+
+    /**
+     * If max length is defined,
+     */
+    private void checkMaxDataLength() {
+        if (maxDataLength != null && mData.size() >= maxDataLength) {
+            mBlockLazyLoad = true;
+            Toast.makeText(getActivity(), "End of the list", Toast.LENGTH_SHORT).show();
+        }
     }
 }
