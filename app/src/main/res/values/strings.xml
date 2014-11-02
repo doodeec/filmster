@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">Filmster</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_refresh">Refresh</string>
 
     <!--Server request-->
     <!--TODO more user friendly messages-->
+    <string name="server_error_msg">Server error</string>
     <string name="server_error" formatted="false">Remote url returned error %d - %s</string>
     <string name="unexpected_response">Unexpected response returned from the server</string>
     <string name="connection_timeout">Connection timeout</string>
@@ -21,5 +21,16 @@
     <string name="movie_rating_hint">N/A</string>
     <string name="movie_synopsis_hint">This movie is about something, and this something is very
     exciting so you should definitely see this movie</string>
+
+    <!--Lazy List-->
+    <string name="list_end">End of the list</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="repeat_req_msg">Request not successful. Repeat?</string>
+    <string name="data_loaded_db">Data loaded from database</string>
+    <string name="db_data_empty">Data unavailable. Check network connection</string>
+
+    <!--Network Connection-->
+    <string name="not_connected">Network connection unavailable</string>
+    <string name="reconnected">Network connection available. Reload Data?</string>
 
 </resources>

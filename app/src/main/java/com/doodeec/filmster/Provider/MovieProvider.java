@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class MovieProvider {
 
+    private static DbHelper mDbHelper;
     private static SQLiteDatabase db;
 
     /**
@@ -26,7 +27,7 @@ public class MovieProvider {
      */
     private static void openDbConnection() {
         if (db == null || !db.isOpen()) {
-            DbHelper mDbHelper = new DbHelper(AppState.getContext());
+            mDbHelper = new DbHelper(AppState.getContext());
             db = mDbHelper.getReadableDatabase();
         }
     }
@@ -52,6 +53,15 @@ public class MovieProvider {
             if (db != null) db.close();
         }
         return movies;
+    }
+
+    /**
+     * Deletes movie list from database
+     */
+    public static void clearMoviesDb() {
+        openDbConnection();
+        mDbHelper.onUpgrade(db, 0, 0);
+        Log.d("FILMSTER", "Database data cleared");
     }
 
     /**

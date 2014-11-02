@@ -24,9 +24,9 @@ public class Movie extends JSONParser {
     private String mPoster;
     private String mLink;
     private String[] mCast;
-    private Integer mYear;
-    private Integer mAudienceRating;
-    private Integer mCriticsRating;
+    private Integer mYear = null;
+    private Integer mAudienceRating = null;
+    private Integer mCriticsRating = null;
 
     /**
      * Constructs Movie object from entry in DB
@@ -40,9 +40,15 @@ public class Movie extends JSONParser {
         mThumbnail = cursor.getString(cursor.getColumnIndex(MovieEntry.THUMBNAIL_KEY));
         mPoster = cursor.getString(cursor.getColumnIndex(MovieEntry.POSTER_KEY));
         mLink = cursor.getString(cursor.getColumnIndex(MovieEntry.LINK_KEY));
-        mYear = cursor.getInt(cursor.getColumnIndex(MovieEntry.YEAR_KEY));
-        mAudienceRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_AUDIENCE_KEY));
-        mCriticsRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY));
+        if (!cursor.isNull(cursor.getColumnIndex(MovieEntry.YEAR_KEY))) {
+            mYear = cursor.getInt(cursor.getColumnIndex(MovieEntry.YEAR_KEY));
+        }
+        if (!cursor.isNull(cursor.getColumnIndex(MovieEntry.RATING_AUDIENCE_KEY))) {
+            mAudienceRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_AUDIENCE_KEY));
+        }
+        if (!cursor.isNull(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY))) {
+            mCriticsRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY));
+        }
     }
 
     /**

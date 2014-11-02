@@ -9,6 +9,7 @@ import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.Provider.MovieProvider;
+import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
@@ -30,8 +31,8 @@ public class MovieListFragment extends LazyList<Movie> {
         if (AppState.getIsApplicationOnline()) {
             loadPage(1);
         } else {
-            Toast.makeText(getActivity(), "Internet connection unavailable", Toast.LENGTH_SHORT).show();
-            onDataLoadingFailed(REASON_CONNECTION_LOST);
+            Toast.makeText(getActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();
+            onDataLoadingFailed(REASON_CONNECTION_LOST, null);
 
             // block lazy load scrolling
             setMaxDataLength(0);
@@ -39,8 +40,11 @@ public class MovieListFragment extends LazyList<Movie> {
             // read from DB
             mData.addAll(MovieProvider.getSavedMovies());
 
+            // show toast if database had some data entries
             if (mData.size() > 0) {
-                Toast.makeText(getActivity(), "Movies loaded from database", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.data_loaded_db, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), R.string.db_data_empty, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -82,28 +86,35 @@ public class MovieListFragment extends LazyList<Movie> {
                     mData.addAll(Arrays.asList(movies));
                     onDataLoadingCompleted(page);
 
-                    //save to DB
+                    // save data to DB (handles create/update)
                     MovieProvider.saveMoviesToDb(mData);
                 } else {
-                    onDataLoadingFailed(REASON_LIST_END);
+                    onDataLoadingFailed(REASON_LIST_END, null);
                 }
             }
 
             @Override
             public void onError(ErrorResponse error) {
-                onDataLoadingFailed(LazyList.REASON_SERVER_ERROR);
+                onDataLoadingFailed(LazyList.REASON_SERVER_ERROR, page);
             }
 
             @Override
             public void onProgress(Integer progress) {
-                //TODO progressbar?
+                //TODO show progress?
             }
 
             @Override
             public void onCancelled() {
-                onDataLoadingFailed(LazyList.REASON_REQUEST_CANCELLED);
+                onDataLoadingFailed(LazyList.REASON_REQUEST_CANCELLED, page);
             }
         });
+    }
+
+    @Override
+    public void reloadData() {
+        // clear database data first
+        MovieProvider.clearMoviesDb();
+        super.reloadData();
     }
 
     /**

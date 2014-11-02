@@ -1,11 +1,12 @@
 package com.doodeec.filmster;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.ApplicationState.ConnectionStateChange;
@@ -84,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_refresh) {
-            Toast.makeText(this, "Refresh clicked", Toast.LENGTH_SHORT).show();
+            mListFragment.reloadData();
             return true;
         }
 
@@ -93,7 +94,22 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
 
     @Override
     public void onConnectionGained() {
-        //TODO handle connection gained
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(R.string.reconnected);
+        dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                mListFragment.reloadData();
+            }
+        });
+        dialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override

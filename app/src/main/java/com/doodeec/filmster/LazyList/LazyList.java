@@ -1,5 +1,7 @@
 package com.doodeec.filmster.LazyList;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -96,6 +98,14 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     }
 
     /**
+     * Reloads all the data completely
+     */
+    public void reloadData() {
+        setMaxDataLength(null);
+        initData();
+    }
+
+    /**
      * Subclasses should override this method to load specific page
      *
      * @param page page to load
@@ -145,23 +155,21 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      *
      * @param reason reason ID
      */
-    protected synchronized void onDataLoadingFailed(int reason) {
+    protected synchronized void onDataLoadingFailed(int reason, final Integer page) {
         mLoading = false;
-
-        //TODO prompt request repeat
 
         switch (reason) {
             case REASON_LIST_END:
-                Toast.makeText(getActivity(), "End of the list", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.list_end, Toast.LENGTH_SHORT).show();
                 mBlockLazyLoad = true;
                 break;
             case REASON_SERVER_ERROR:
-                Toast.makeText(getActivity(), "Server error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.server_error_msg, Toast.LENGTH_SHORT).show();
                 break;
             case REASON_CONNECTION_LOST:
                 break;
             default:
-                Toast.makeText(getActivity(), "Unknown error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.unknown_error, Toast.LENGTH_SHORT).show();
                 //TODO throw error?
                 break;
         }
@@ -177,6 +185,26 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
                 } else {
                     mProgress.setVisibility(View.GONE);
                 }
+
+                //prompt request repeat
+                if (page != null) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setMessage(R.string.repeat_req_msg);
+                    dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            loadPage(page);
+                        }
+                    });
+                    dialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
             }
         });
     }
@@ -191,6 +219,8 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
         maxDataLength = maxLength;
         if (maxDataLength != null) {
             mBlockLazyLoad = mData.size() <= maxDataLength;
+        } else {
+            mBlockLazyLoad = false;
         }
     }
 
@@ -200,7 +230,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     private void checkMaxDataLength() {
         if (maxDataLength != null && mData.size() >= maxDataLength) {
             mBlockLazyLoad = true;
-            Toast.makeText(getActivity(), "End of the list", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.list_end, Toast.LENGTH_SHORT).show();
         }
     }
 }
