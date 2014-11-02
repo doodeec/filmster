@@ -2,6 +2,7 @@ package com.doodeec.filmster;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -76,6 +77,12 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //TODO handle screen rotation
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -94,22 +101,25 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
 
     @Override
     public void onConnectionGained() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage(R.string.reconnected);
-        dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                mListFragment.reloadData();
-            }
-        });
-        dialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+        // do not display while loading layout for the first time
+        if (mListFragment.isVisible()) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage(R.string.reconnected);
+            dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    mListFragment.reloadData();
+                }
+            });
+            dialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
     }
 
     @Override
