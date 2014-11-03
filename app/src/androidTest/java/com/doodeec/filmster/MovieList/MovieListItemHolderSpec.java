@@ -61,23 +61,23 @@ public class MovieListItemHolderSpec extends AndroidTestCase {
 
     public void testRatingColor() throws Exception {
         holder.setRating(0);
-        assertEquals(R.color.ruby_deep,
+        assertEquals(getContext().getResources().getColor(R.color.ruby_deep),
                 ((TextView) view.findViewById(R.id.movie_rating)).getCurrentTextColor());
 
-        holder.setRating(19);
-        assertEquals(R.color.amber_deep,
+        holder.setRating(21);
+        assertEquals(getContext().getResources().getColor(R.color.amber_deep),
                 ((TextView) view.findViewById(R.id.movie_rating)).getCurrentTextColor());
 
         holder.setRating(60);
-        assertEquals(R.color.azure_deep,
+        assertEquals(getContext().getResources().getColor(R.color.azure_deep),
                 ((TextView) view.findViewById(R.id.movie_rating)).getCurrentTextColor());
 
         holder.setRating(80);
-        assertEquals(R.color.emerald_deep,
+        assertEquals(getContext().getResources().getColor(R.color.emerald_deep),
                 ((TextView) view.findViewById(R.id.movie_rating)).getCurrentTextColor());
 
         holder.setRating(100);
-        assertEquals(R.color.emerald,
+        assertEquals(getContext().getResources().getColor(R.color.emerald),
                 ((TextView) view.findViewById(R.id.movie_rating)).getCurrentTextColor());
     }
 

@@ -46,7 +46,7 @@ public class MovieListItemHolder {
     public void setRating(Integer rating) {
         if (rating != null) {
             mRatingView.setText(String.format(Helper.getString(R.string.movie_rating), rating));
-            mRatingView.setTextColor(getRatingColor(rating));
+            mRatingView.setTextColor(Helper.getColor(getRatingColor(rating)));
         } else {
             mRatingView.setText(Helper.EMPTY_STRING);
         }

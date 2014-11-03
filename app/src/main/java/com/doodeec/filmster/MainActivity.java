@@ -125,5 +125,8 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     @Override
     public void onConnectionLost() {
         //TODO handle connection lost
+
+        //block lazy loading
+        mListFragment.setMaxDataLength(0);
     }
 }

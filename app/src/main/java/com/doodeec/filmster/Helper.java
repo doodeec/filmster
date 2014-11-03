@@ -24,6 +24,14 @@ public class Helper {
     }
 
     /**
+     * @param colorId color resource id
+     * @return color
+     */
+    public static int getColor(int colorId) {
+        return AppState.getContext().getResources().getColor(colorId);
+    }
+
+    /**
      * Determines if device is connected to network
      *
      * @return true if connected

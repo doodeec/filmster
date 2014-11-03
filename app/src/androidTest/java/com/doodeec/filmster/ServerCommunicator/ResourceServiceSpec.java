@@ -8,4 +8,6 @@ import android.test.InstrumentationTestCase;
  * @see com.doodeec.filmster.ServerCommunicator.ResourceService
  */
 public class ResourceServiceSpec extends InstrumentationTestCase {
+
+
 }

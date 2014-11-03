@@ -132,22 +132,24 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
         mLoading = false;
         mPage = pageNumber;
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                    mProgress.animate()
-                            .translationY(mProgress.getHeight())
-                            .alpha(HIDDEN_LOADER_ALPHA)
-                            .setDuration(LOADER_ANIMATION_DURATION);
-                } else {
-                    mProgress.setVisibility(View.GONE);
-                }
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                        mProgress.animate()
+                                .translationY(mProgress.getHeight())
+                                .alpha(HIDDEN_LOADER_ALPHA)
+                                .setDuration(LOADER_ANIMATION_DURATION);
+                    } else {
+                        mProgress.setVisibility(View.GONE);
+                    }
 
-                mAdapter.notifyDataSetChanged();
-                checkMaxDataLength();
-            }
-        });
+                    mAdapter.notifyDataSetChanged();
+                    checkMaxDataLength();
+                }
+            });
+        }
     }
 
     /**
@@ -215,7 +217,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      * If data length oversizes max length, lazy loading by scroll will be further disabled
      * @param maxLength max length to set
      */
-    protected void setMaxDataLength(Integer maxLength) {
+    public void setMaxDataLength(Integer maxLength) {
         maxDataLength = maxLength;
         if (maxDataLength != null) {
             mBlockLazyLoad = mData.size() <= maxDataLength;
