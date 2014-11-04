@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.doodeec.filmster.ImageCache;
 import com.doodeec.filmster.Model.Movie;
+import com.doodeec.filmster.Provider.MovieProvider;
 import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
@@ -26,6 +27,7 @@ import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
 public class MovieDetailFragment extends Fragment {
 
     private static final String YEAR = "(%d)";
+    private static final String DETAIL_ID_BUNDLE = "Movie_detail";
 
     private Movie mMovie;
     private TextView mTitle;
@@ -56,10 +58,21 @@ public class MovieDetailFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // if detail was opened before, restore the save movie to the view
+        if (savedInstanceState != null) {
+            mMovie = MovieProvider.getMovies().get(savedInstanceState.getInt(DETAIL_ID_BUNDLE));
+        }
+
         // when creating detail in separate new fragment, we can automatically set data to view
         if (mMovie != null) {
             setData();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(DETAIL_ID_BUNDLE, MovieProvider.getMovies().indexOf(mMovie));
+        super.onSaveInstanceState(outState);
     }
 
     /**

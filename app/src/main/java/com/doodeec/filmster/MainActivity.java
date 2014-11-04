@@ -20,9 +20,11 @@ import com.doodeec.filmster.MovieList.MovieListFragment;
 public class MainActivity extends ActionBarActivity implements ConnectionStateChange, MovieListActivityInterface {
 
     private static final String DETAIL_TAG = "detail";
+    private static final String CONNECTION_DIALOG_BUNDLE = "Connection_dialog";
 
     private MovieListFragment mListFragment;
     private MovieDetailFragment mDetailFragment;
+    private AlertDialog.Builder mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,10 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
         if (findViewById(R.id.movie_detail) != null) {
             mDetailFragment = (MovieDetailFragment) getSupportFragmentManager().findFragmentById(R.id.movie_detail);
             getSupportFragmentManager().beginTransaction().hide(mDetailFragment).commit();
+        }
+
+        if (savedInstanceState != null && savedInstanceState.getBoolean(CONNECTION_DIALOG_BUNDLE)) {
+            showConnectionDialog();
         }
     }
 
@@ -77,6 +83,12 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(CONNECTION_DIALOG_BUNDLE, mDialog != null);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         //TODO handle screen rotation
         super.onConfigurationChanged(newConfig);
@@ -103,22 +115,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     public void onConnectionGained() {
         // do not display while loading layout for the first time
         if (mListFragment.isVisible()) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setMessage(R.string.reconnected);
-            dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    mListFragment.reloadData();
-                }
-            });
-            dialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            dialog.show();
+            showConnectionDialog();
         }
     }
 
@@ -128,5 +125,35 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
 
         //block lazy loading
         mListFragment.setMaxDataLength(0);
+    }
+
+    /**
+     * Shows dialog that connection is available again
+     */
+    private void showConnectionDialog() {
+        mDialog = new AlertDialog.Builder(this);
+        mDialog.setMessage(R.string.reconnected);
+        mDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                mListFragment.reloadData();
+            }
+        });
+        mDialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // since show returns AlertDialog reference, which has onDismiss listener available for old API
+        // we can make use of chaining these methods
+        mDialog.show().setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mDialog = null;
+            }
+        });
     }
 }

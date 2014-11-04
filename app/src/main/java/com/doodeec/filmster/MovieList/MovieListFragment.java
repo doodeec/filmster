@@ -29,9 +29,9 @@ public class MovieListFragment extends LazyList<Movie> {
         initClickListener();
 
         if (AppState.getIsApplicationOnline()) {
-            loadPage(1);
+            loadPage(++mPage);
         } else {
-            Toast.makeText(getActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppState.getCurrentActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();
             onDataLoadingFailed(REASON_CONNECTION_LOST, null);
 
             // block lazy load scrolling
@@ -42,11 +42,24 @@ public class MovieListFragment extends LazyList<Movie> {
 
             // show toast if database had some data entries
             if (mData.size() > 0) {
-                Toast.makeText(getActivity(), R.string.data_loaded_db, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppState.getCurrentActivity(), R.string.data_loaded_db, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), R.string.db_data_empty, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AppState.getCurrentActivity(), R.string.db_data_empty, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void reviveData() {
+        mData.clear();
+        mData.addAll(MovieProvider.getMovies());
+
+        mAdapter = new MovieListAdapter(mData, this);
+        setListAdapter(mAdapter);
+        initClickListener();
+
+        // super sets scroll listener
+        super.reviveData();
     }
 
     /**
@@ -56,18 +69,25 @@ public class MovieListFragment extends LazyList<Movie> {
      * @param movieImage loaded image
      */
     public void movieImageLoaded(final int position, final Bitmap movieImage) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                View viewAtPosition = getListView().getChildAt(position - getListView().getFirstVisiblePosition());
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // checking for null, in case screen was rotated while image loading
+                    // since listView is not loaded again yet, it will take care of loading image from cache
+                    // when initialized, since image is already in LRUCache
+                    if (isVisible()) {
+                        View viewAtPosition = getListView().getChildAt(position - getListView().getFirstVisiblePosition());
 
-                // update only if view is visible
-                if (viewAtPosition != null) {
-                    MovieListItemHolder holder = (MovieListItemHolder) viewAtPosition.getTag();
-                    holder.setThumbnail(movieImage);
+                        // update only if view is visible
+                        if (viewAtPosition != null) {
+                            MovieListItemHolder holder = (MovieListItemHolder) viewAtPosition.getTag();
+                            holder.setThumbnail(movieImage);
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**
@@ -124,7 +144,9 @@ public class MovieListFragment extends LazyList<Movie> {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MovieListActivityInterface) getActivity()).onDisplayDetail((Movie) mAdapter.getItem(position));
+                if (getActivity() instanceof MovieListActivityInterface) {
+                    ((MovieListActivityInterface) getActivity()).onDisplayDetail((Movie) mAdapter.getItem(position));
+                }
             }
         });
     }

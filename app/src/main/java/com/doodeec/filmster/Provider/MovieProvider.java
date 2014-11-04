@@ -21,6 +21,7 @@ public class MovieProvider {
 
     private static DbHelper mDbHelper;
     private static SQLiteDatabase db;
+    private static List<Movie> mMovieList;
 
     /**
      * Opens database if not opened
@@ -29,6 +30,19 @@ public class MovieProvider {
         if (db == null || !db.isOpen()) {
             mDbHelper = new DbHelper(AppState.getContext());
             db = mDbHelper.getReadableDatabase();
+        }
+    }
+
+    /**
+     * Reads movies - either saved reference, or reads the list from database
+     * @return available list of movies
+     */
+    public static List<Movie> getMovies() {
+        if (mMovieList == null || mMovieList.size() == 0) {
+            return getSavedMovies();
+        } else {
+            Log.d("FILMSTER", "Movies loaded from memory: " + mMovieList.size());
+            return mMovieList;
         }
     }
 
@@ -62,6 +76,7 @@ public class MovieProvider {
         openDbConnection();
         mDbHelper.onUpgrade(db, 0, 0);
         Log.d("FILMSTER", "Database data cleared");
+        mMovieList.clear();
     }
 
     /**
@@ -83,6 +98,7 @@ public class MovieProvider {
             Log.e("FILMSTER", "Database error: " + e.getMessage());
         } finally {
             db.endTransaction();
+            mMovieList = movies;
         }
     }
 }
