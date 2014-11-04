@@ -24,11 +24,12 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
 
     private MovieListFragment mListFragment;
     private MovieDetailFragment mDetailFragment;
-    private AlertDialog.Builder mDialog;
+    private AlertDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppState.setCurrentActivity(this);
         setContentView(R.layout.activity_main);
 
         mListFragment = (MovieListFragment) getSupportFragmentManager().findFragmentById(R.id.movie_list);
@@ -85,6 +86,10 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(CONNECTION_DIALOG_BUNDLE, mDialog != null);
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
+
         super.onSaveInstanceState(outState);
     }
 
@@ -131,25 +136,24 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
      * Shows dialog that connection is available again
      */
     private void showConnectionDialog() {
-        mDialog = new AlertDialog.Builder(this);
-        mDialog.setMessage(R.string.reconnected);
-        mDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.reconnected);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 mListFragment.reloadData();
             }
         });
-        mDialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
 
-        // since show returns AlertDialog reference, which has onDismiss listener available for old API
-        // we can make use of chaining these methods
-        mDialog.show().setOnDismissListener(new DialogInterface.OnDismissListener() {
+        mDialog = builder.show();
+        mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 mDialog = null;

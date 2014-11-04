@@ -76,7 +76,9 @@ public class MovieProvider {
         openDbConnection();
         mDbHelper.onUpgrade(db, 0, 0);
         Log.d("FILMSTER", "Database data cleared");
-        mMovieList.clear();
+        if (mMovieList != null) {
+            mMovieList.clear();
+        }
     }
 
     /**

@@ -47,7 +47,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     protected final List<T> mData = new ArrayList<T>();
     protected LazyListAdapter mAdapter;
     protected RelativeLayout mProgress;
-    protected AlertDialog.Builder mRepeatDialog;
+    protected AlertDialog mRepeatDialog;
 
     private final AbsListView.OnScrollListener mScrollListener = new AbsListView.OnScrollListener() {
         @Override
@@ -100,6 +100,9 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(SAVED_PAGE, mPage);
         outState.putBoolean(REPEAT_DIALOG_BUNDLE, mRepeatDialog != null);
+        if (mRepeatDialog != null) {
+            mRepeatDialog.dismiss();
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -267,22 +270,23 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      */
     private void showRepeatDialog(final int page) {
         if (getActivity() != null) {
-            mRepeatDialog = new AlertDialog.Builder(getActivity());
-            mRepeatDialog.setMessage(R.string.repeat_req_msg);
-            mRepeatDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.repeat_req_msg);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     loadPage(page);
                 }
             });
-            mRepeatDialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
             });
-            mRepeatDialog.show().setOnDismissListener(new DialogInterface.OnDismissListener() {
+            mRepeatDialog = builder.show();
+            mRepeatDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
                     mRepeatDialog = null;
