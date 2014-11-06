@@ -14,8 +14,6 @@ import java.util.List;
  * @see com.doodeec.filmster.Provider.MovieProvider
  */
 public class MovieProviderSpec extends AndroidTestCase {
-    //TODO movie provider test
-
 
     @Override
     protected void setUp() throws Exception {

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.MainActivity;
+import com.doodeec.filmster.Mock;
 import com.doodeec.filmster.Model.Movie;
 import com.robotium.solo.Solo;
 
@@ -18,7 +18,7 @@ public class MovieDetailFragmentSpec extends ActivityInstrumentationTestCase2<Ma
 
     private Solo solo;
     private MainActivity mActivity;
-    private LazyList<Movie> mFragment;
+    private MovieDetailFragment mFragment;
 
     public MovieDetailFragmentSpec() {
         super(MainActivity.class);
@@ -27,10 +27,10 @@ public class MovieDetailFragmentSpec extends ActivityInstrumentationTestCase2<Ma
     private Fragment startFragment(Fragment fragment) throws Exception {
         FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
         //TODO
-        transaction.add(android.R.id.content, fragment, "lazy_list_fragment");
+        transaction.add(android.R.id.content, fragment, "movie_detail_fragment");
         transaction.commit();
         getInstrumentation().waitForIdleSync();
-        return mActivity.getSupportFragmentManager().findFragmentByTag("lazy_list_fragment");
+        return mActivity.getSupportFragmentManager().findFragmentByTag("movie_detail_fragment");
     }
 
     @Override
@@ -41,7 +41,8 @@ public class MovieDetailFragmentSpec extends ActivityInstrumentationTestCase2<Ma
         setActivityInitialTouchMode(false);
 
         mActivity = getActivity();
-        mFragment = new LazyList<Movie>();
+        mFragment = new MovieDetailFragment();
+        mFragment.setMovie(new Movie(Mock.REST_MOVIE()));
         startFragment(mFragment);
     }
 

@@ -2,6 +2,7 @@ package com.doodeec.filmster.MovieList;
 
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -67,8 +68,12 @@ public class MovieListAdapter extends LazyListAdapter<Movie> {
                 // load image - either from cache, or load from service
                 if (getItem(position).getThumbnail() == null) {
                     // poster link not available
+                    Log.d("FILMSTER", "Movie thumbnail not defined: " + position);
                 } else if (ImageCache.getBitmapFromCache(getItem(position).getThumbnail()) != null) {
-                    ((MovieListFragment) mLazyList.get()).movieImageLoaded(position, ImageCache.getBitmapFromCache(getItem(position).getThumbnail()));
+                    // list can be garbage collected already
+                    if (mLazyList.get() != null) {
+                        ((MovieListFragment) mLazyList.get()).movieImageLoaded(position, ImageCache.getBitmapFromCache(getItem(position).getThumbnail()));
+                    }
                 } else {
                     ResourceService.loadImage(getItem(position).getThumbnail(), new BitmapServerResponseListener() {
                         @Override

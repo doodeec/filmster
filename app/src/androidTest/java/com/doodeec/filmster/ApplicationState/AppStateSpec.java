@@ -1,5 +1,6 @@
 package com.doodeec.filmster.ApplicationState;
 
+import android.app.Activity;
 import android.test.ApplicationTestCase;
 
 import com.doodeec.filmster.Helper;
@@ -28,5 +29,13 @@ public class AppStateSpec extends ApplicationTestCase<AppState> {
 
     public void testIsOnline() throws Exception {
         assertEquals(Helper.isOnline(), AppState.getIsApplicationOnline());
+    }
+
+    public void testCurrentActivity() throws Exception {
+        Activity activity = new Activity();
+
+        assertNotSame(activity, AppState.getCurrentActivity());
+        AppState.setCurrentActivity(activity);
+        assertEquals(activity, AppState.getCurrentActivity());
     }
 }

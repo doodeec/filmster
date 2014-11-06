@@ -47,6 +47,8 @@ public class Movie extends JSONParser {
         if (!cursor.isNull(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY))) {
             mCriticsRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY));
         }
+
+        //TODO load + show cast
     }
 
     /**

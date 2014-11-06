@@ -24,6 +24,7 @@ public class DbHelperSpec extends AndroidTestCase {
 
     public void testAddEntry() {
         Movie movie = new Movie(Mock.REST_MOVIE());
+        mHelper.saveMovie(db, movie);
     }
 
     public void tearDown() throws Exception {

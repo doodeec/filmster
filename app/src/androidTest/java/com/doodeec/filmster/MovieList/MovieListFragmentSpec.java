@@ -1,12 +1,11 @@
 package com.doodeec.filmster.MovieList;
 
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.MainActivity;
-import com.doodeec.filmster.Model.Movie;
 import com.robotium.solo.Solo;
 
 /**
@@ -18,7 +17,7 @@ public class MovieListFragmentSpec extends ActivityInstrumentationTestCase2<Main
 
     private Solo solo;
     private MainActivity mActivity;
-    private LazyList<Movie> mFragment;
+    private MovieListFragment mFragment;
 
     public MovieListFragmentSpec() {
         super(MainActivity.class);
@@ -26,10 +25,10 @@ public class MovieListFragmentSpec extends ActivityInstrumentationTestCase2<Main
 
     private Fragment startFragment(Fragment fragment) throws Exception {
         FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
-        transaction.add(android.R.id.content, fragment, "lazy_list_fragment");
+        transaction.add(android.R.id.content, fragment, "movie_list_fragment");
         transaction.commit();
         getInstrumentation().waitForIdleSync();
-        return mActivity.getSupportFragmentManager().findFragmentByTag("lazy_list_fragment");
+        return mActivity.getSupportFragmentManager().findFragmentByTag("movie_list_fragment");
     }
 
     @Override
@@ -40,9 +39,21 @@ public class MovieListFragmentSpec extends ActivityInstrumentationTestCase2<Main
         setActivityInitialTouchMode(false);
 
         mActivity = getActivity();
-        mFragment = new LazyList<Movie>();
+        mFragment = new MovieListFragment();
         startFragment(mFragment);
     }
+
+    public void testImageLoaded() throws Exception {
+        Bitmap image = Bitmap.createBitmap(100,200, Bitmap.Config.ARGB_8888);
+
+        mFragment.movieImageLoaded(0, image);
+    }
+
+    public void testLoadPage() throws Exception {
+        mFragment.loadPage(1);
+    }
+
+    //TODO more tests
 
     @Override
     protected void tearDown() throws Exception {
