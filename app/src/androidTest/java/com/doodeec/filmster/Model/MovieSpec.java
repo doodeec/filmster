@@ -1,6 +1,7 @@
 package com.doodeec.filmster.Model;
 
 import android.test.InstrumentationTestCase;
+import android.test.mock.MockCursor;
 
 import com.doodeec.filmster.Mock;
 
@@ -27,7 +28,29 @@ public class MovieSpec extends InstrumentationTestCase {
     }
 
     public void testMovieCursorConstructor() throws Exception {
-        //TODO test cursor constructor
+        MockCursor cursor = new MockCursor() {
+            @Override
+            public int getColumnIndex(String columnName) {
+                return 1;
+            }
+
+            @Override
+            public String getString(int columnIndex) {
+                return "MockCursorString";
+            }
+
+            @Override
+            public boolean isNull(int columnIndex) {
+                return false;
+            }
+
+            @Override
+            public int getInt(int columnIndex) {
+                return 1;
+            }
+        };
+        Movie movie = new Movie(cursor);
+        assertNotNull(movie);
     }
 
     public void testMovieGetters() throws Exception {

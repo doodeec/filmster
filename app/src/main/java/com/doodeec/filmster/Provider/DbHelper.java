@@ -1,8 +1,13 @@
 package com.doodeec.filmster.Provider;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.doodeec.filmster.Model.Movie;
 
 /**
  * Created by Dusan Doodeec Bartos on 25.10.2014.
@@ -37,5 +42,38 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    /**
+     * Saves movie to database
+     * @param db database reference
+     * @param movie movie to save
+     */
+    public void saveMovie(SQLiteDatabase db, Movie movie) {
+        ContentValues values = new ContentValues();
+        values.put(MovieEntry.ID_KEY, movie.getId());
+        values.put(MovieEntry.TITLE_KEY, movie.getTitle());
+        values.put(MovieEntry.SYNOPSIS_KEY, movie.getSynopsis());
+        values.put(MovieEntry.POSTER_KEY, movie.getPoster());
+        values.put(MovieEntry.THUMBNAIL_KEY, movie.getThumbnail());
+        values.put(MovieEntry.LINK_KEY, movie.getLink());
+        values.put(MovieEntry.YEAR_KEY, movie.getYear());
+        values.put(MovieEntry.RATING_AUDIENCE_KEY, movie.getAudienceRating());
+        values.put(MovieEntry.RATING_CRITICS_KEY, movie.getCriticsRating());
+
+        String[] stlpec = { MovieEntry.ID_KEY } ;
+        String[] args = { movie.getId() } ;
+
+        Cursor c = db.query(MovieEntry.DICTIONARY_TABLE_NAME, stlpec , "id = ?", args, null, null, null);
+
+        if(c.moveToFirst()) {
+            db.update(MovieEntry.DICTIONARY_TABLE_NAME, values, "id = ?", args);
+            Log.d("FILMSTER", "Updated movie: " + movie.getId());
+        } else {
+            db.insert(MovieEntry.DICTIONARY_TABLE_NAME, null, values);
+            Log.d("FILMSTER", "Inserted movie: " + movie.getId());
+        }
+
+        c.close();
     }
 }

@@ -92,7 +92,7 @@ public class MovieProvider {
             db.beginTransaction();
 
             for (Movie m : movies) {
-                m.saveToDb(db);
+                mDbHelper.saveMovie(db, m);
             }
 
             db.setTransactionSuccessful();

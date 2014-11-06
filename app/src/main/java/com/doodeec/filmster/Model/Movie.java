@@ -1,8 +1,6 @@
 package com.doodeec.filmster.Model;
 
-import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.doodeec.filmster.Provider.MovieEntry;
@@ -116,33 +114,5 @@ public class Movie extends JSONParser {
 
     public Integer getCriticsRating() {
         return mCriticsRating;
-    }
-
-    public void saveToDb(SQLiteDatabase db) {
-        ContentValues values = new ContentValues();
-        values.put(MovieEntry.ID_KEY, mId);
-        values.put(MovieEntry.TITLE_KEY, mTitle);
-        values.put(MovieEntry.SYNOPSIS_KEY, mSynopsis);
-        values.put(MovieEntry.POSTER_KEY, mPoster);
-        values.put(MovieEntry.THUMBNAIL_KEY, mThumbnail);
-        values.put(MovieEntry.LINK_KEY, mLink);
-        values.put(MovieEntry.YEAR_KEY, mYear);
-        values.put(MovieEntry.RATING_AUDIENCE_KEY, mAudienceRating);
-        values.put(MovieEntry.RATING_CRITICS_KEY, mCriticsRating);
-
-        String[] stlpec = { MovieEntry.ID_KEY } ;
-        String[] args = { mId } ;
-
-        Cursor c = db.query(MovieEntry.DICTIONARY_TABLE_NAME, stlpec , "id = ?", args, null, null, null);
-
-        if(c.moveToFirst()) {
-            db.update(MovieEntry.DICTIONARY_TABLE_NAME, values, "id = ?", args);
-            Log.d("FILMSTER", "Updated movie: " + mId);
-        } else {
-            db.insert(MovieEntry.DICTIONARY_TABLE_NAME, null, values);
-            Log.d("FILMSTER", "Inserted movie: " + mId);
-        }
-
-        c.close();
     }
 }
