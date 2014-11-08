@@ -301,8 +301,8 @@ public class ServerRequest extends AsyncTask<Void, Integer, Void> implements Ser
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                //TODO
-                stringBuilder.append(line + "\n");
+                stringBuilder.append(line);
+                stringBuilder.append("\n");
             }
             return stringBuilder.toString();
         } finally {

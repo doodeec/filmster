@@ -14,6 +14,10 @@
     <!--Movie-->
     <string name="movie_poster">Movie poster</string>
     <string name="movie_rating" formatted="false">%d %%</string>
+    <string name="movie_cast">Cast</string>
+    <string name="movie_link">Check this movie on IMDB</string>
+    <string name="movie_rating_detail">Rating (Audience/Critics)</string>
+    <string name="movie_synopsis">Synopsis</string>
 
     <!--Hint-->
     <string name="movie_title_hint">Movie Title</string>

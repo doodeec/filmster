@@ -1,11 +1,9 @@
 package com.doodeec.filmster.Model;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.doodeec.filmster.Provider.MovieEntry;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -48,7 +46,8 @@ public class Movie extends JSONParser {
             mCriticsRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY));
         }
 
-        //TODO load + show cast
+        //TODO load cast
+        mCast = new String[0];
     }
 
     /**
@@ -57,29 +56,28 @@ public class Movie extends JSONParser {
      * @param jsonObject movie definition
      */
     public Movie(JSONObject jsonObject) {
-        try {
-            mId = jsonObject.getString(MovieDefinitionKeys.KEY_ID);
-            mTitle = jsonObject.getString(MovieDefinitionKeys.KEY_TITLE);
-            mSynopsis = jsonObject.getString(MovieDefinitionKeys.KEY_SYNOPSIS);
-            mYear = jsonObject.getInt(MovieDefinitionKeys.KEY_YEAR);
+        mId = getStringForKey(jsonObject, MovieDefinitionKeys.KEY_ID);
+        mTitle = getStringForKey(jsonObject, MovieDefinitionKeys.KEY_TITLE);
+        mSynopsis = getStringForKey(jsonObject, MovieDefinitionKeys.KEY_SYNOPSIS);
+        mYear = getIntForKey(jsonObject, MovieDefinitionKeys.KEY_YEAR);
 
-            JSONObject ratings = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_RATING);
-            if (ratings.has(MovieDefinitionKeys.KEY_RATING_AUDIENCE)) {
-                mAudienceRating = ratings.getInt(MovieDefinitionKeys.KEY_RATING_AUDIENCE);
-            }
-            if (ratings.has(MovieDefinitionKeys.KEY_RATING_CRITICS)) {
-                mCriticsRating = ratings.getInt(MovieDefinitionKeys.KEY_RATING_CRITICS);
-            }
-
-            JSONObject postersObject = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_POSTERS);
-            mThumbnail = postersObject.getString(MovieDefinitionKeys.KEY_POSTER_THUMBNAIL);
-            mPoster = postersObject.getString(MovieDefinitionKeys.KEY_POSTER_DETAIL);
-
-            JSONObject linksObject = jsonObject.getJSONObject(MovieDefinitionKeys.KEY_LINKS);
-            mLink = linksObject.getString(MovieDefinitionKeys.KEY_LINK_IMDB);
-        } catch (JSONException e) {
-            Log.e("FILMSTER", "Movie definition not valid: " + e.getMessage());
+        JSONObject ratings = getObjectForKey(jsonObject, MovieDefinitionKeys.KEY_RATING);
+        if (ratings.has(MovieDefinitionKeys.KEY_RATING_AUDIENCE)) {
+            mAudienceRating = getIntForKey(ratings, MovieDefinitionKeys.KEY_RATING_AUDIENCE);
         }
+        if (ratings.has(MovieDefinitionKeys.KEY_RATING_CRITICS)) {
+            mCriticsRating = getIntForKey(ratings, MovieDefinitionKeys.KEY_RATING_CRITICS);
+        }
+
+        JSONObject postersObject = getObjectForKey(jsonObject, MovieDefinitionKeys.KEY_POSTERS);
+        mThumbnail = getStringForKey(postersObject, MovieDefinitionKeys.KEY_POSTER_THUMBNAIL);
+        mPoster = getStringForKey(postersObject, MovieDefinitionKeys.KEY_POSTER_DETAIL);
+
+        JSONObject linksObject = getObjectForKey(jsonObject, MovieDefinitionKeys.KEY_LINKS);
+        mLink = getStringForKey(linksObject, MovieDefinitionKeys.KEY_LINK_IMDB);
+
+        //TODO load cast
+        mCast = new String[0];
     }
 
     public String getId() {
@@ -116,5 +114,9 @@ public class Movie extends JSONParser {
 
     public Integer getCriticsRating() {
         return mCriticsRating;
+    }
+
+    public String[] getCast() {
+        return mCast;
     }
 }
