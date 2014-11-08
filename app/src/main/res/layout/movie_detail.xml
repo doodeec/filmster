@@ -84,7 +84,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/rating_text"
                 android:hint="@string/movie_rating_hint"/>
-            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/movie_cast_label"
@@ -94,10 +94,11 @@
             android:textStyle="bold"
             android:text="@string/movie_cast"/>
 
-        <ListView
+        <LinearLayout
             android:id="@+id/movie_cast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
 
         <Button
             android:id="@+id/movie_link"

@@ -10,13 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.doodeec.filmster.ApplicationState.AppState;
 import com.doodeec.filmster.ImageCache;
 import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.Provider.MovieProvider;
@@ -35,6 +34,7 @@ public class MovieDetailFragment extends Fragment {
     private static final String YEAR = "(%d)";
     private static final String DETAIL_ID_BUNDLE = "Movie_detail";
 
+    private final RelativeLayout.LayoutParams mCastParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     private final View.OnClickListener mLinkBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -52,7 +52,7 @@ public class MovieDetailFragment extends Fragment {
     private TextView mAudRating;
     private TextView mCritRating;
     private TextView mCastLabel;
-    private ListView mCast;
+    private LinearLayout mCast;
     private ImageView mPoster;
 
     public void setMovie(Movie movie) {
@@ -69,7 +69,7 @@ public class MovieDetailFragment extends Fragment {
         mAudRating = (TextView) v.findViewById(R.id.audience_rating);
         mCritRating = (TextView) v.findViewById(R.id.critics_rating);
         mCastLabel = (TextView) v.findViewById(R.id.movie_cast_label);
-        mCast = (ListView) v.findViewById(R.id.movie_cast);
+        mCast = (LinearLayout) v.findViewById(R.id.movie_cast);
         mLinkBtn = (Button) v.findViewById(R.id.movie_link);
 
         if (mPoster == null || mTitle == null || mYear == null || mSynopsis == null || mAudRating == null ||
@@ -97,15 +97,18 @@ public class MovieDetailFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(DETAIL_ID_BUNDLE, MovieProvider.getMovies().indexOf(mMovie));
+        int movieId = getMovieItemId();
+        if (movieId != -1) {
+            outState.putInt(DETAIL_ID_BUNDLE, movieId);
+        }
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    public void onDetach() {
+    public void onPause() {
         // free listener reference first
         mLinkBtn.setOnClickListener(null);
-        super.onDetach();
+        super.onPause();
     }
 
     /**
@@ -120,15 +123,7 @@ public class MovieDetailFragment extends Fragment {
         mAudRating.setText(mMovie.getAudienceRating() != null ? String.valueOf(mMovie.getAudienceRating()) : "");
         mCritRating.setText(mMovie.getCriticsRating() != null ? String.valueOf(mMovie.getCriticsRating()) : "");
 
-        // set cast adapter
-        if (mMovie.getCast() != null && mMovie.getCast().length > 0) {
-            mCast.setAdapter(new ArrayAdapter<String>(AppState.getContext(), android.R.layout.simple_list_item_1, mMovie.getCast()));
-            mCast.setVisibility(View.VISIBLE);
-            mCastLabel.setVisibility(View.VISIBLE);
-        } else {
-            mCast.setVisibility(View.GONE);
-            mCastLabel.setVisibility(View.GONE);
-        }
+        setCast();
 
         // sets movie poster
         if (mMovie.getPoster() == null) {
@@ -166,5 +161,34 @@ public class MovieDetailFragment extends Fragment {
         } else {
             mLinkBtn.setVisibility(View.GONE);
         }
+    }
+
+    /**
+     * Fills cast section with actors
+     */
+    private void setCast() {
+        mCast.removeAllViews();
+
+        if (mMovie.getCast() != null && mMovie.getCast().length > 0) {
+            for (String actor: mMovie.getCast()) {
+                TextView view = new TextView(getActivity());
+                view.setLayoutParams(mCastParams);
+                view.setText(actor);
+                mCast.addView(view);
+            }
+
+            mCast.setVisibility(View.VISIBLE);
+            mCastLabel.setVisibility(View.VISIBLE);
+        } else {
+            mCast.setVisibility(View.GONE);
+            mCastLabel.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * @return position of displayed movie detail in movies array
+     */
+    public Integer getMovieItemId() {
+        return MovieProvider.getMovies().indexOf(mMovie);
     }
 }

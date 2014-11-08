@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Handler;
 
 import com.doodeec.filmster.Helper;
 
@@ -17,8 +16,6 @@ import com.doodeec.filmster.Helper;
  * Keeps track of application state
  */
 public class AppState extends Application {
-    private static final int CONNECTION_STATUS_CHANGE_DELAY = 300;
-
     private static Context mContext;
     private static Boolean mOnline;
     private static Activity mCurrentActivity;
@@ -26,22 +23,17 @@ public class AppState extends Application {
     private static final BroadcastReceiver connectionChange = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (Helper.isOnline()) {
-                        mOnline = true;
-                        if (mCurrentActivity != null && mCurrentActivity instanceof ConnectionStateChange) {
-                            ((ConnectionStateChange) mCurrentActivity).onConnectionGained();
-                        }
-                    } else {
-                        mOnline = false;
-                        if (mCurrentActivity != null && mCurrentActivity instanceof ConnectionStateChange) {
-                            ((ConnectionStateChange) mCurrentActivity).onConnectionLost();
-                        }
-                    }
+            if (Helper.isOnline()) {
+                mOnline = true;
+                if (mCurrentActivity != null && mCurrentActivity instanceof ConnectionStateChange) {
+                    ((ConnectionStateChange) mCurrentActivity).onConnectionGained();
                 }
-            }, CONNECTION_STATUS_CHANGE_DELAY);
+            } else {
+                mOnline = false;
+                if (mCurrentActivity != null && mCurrentActivity instanceof ConnectionStateChange) {
+                    ((ConnectionStateChange) mCurrentActivity).onConnectionLost();
+                }
+            }
         }
     };
 

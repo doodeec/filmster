@@ -136,6 +136,7 @@ public class LazyList<T> extends android.support.v4.app.ListFragment {
      */
     public void reloadData() {
         setMaxDataLength(null);
+        mPage = 0;
         initData();
     }
 

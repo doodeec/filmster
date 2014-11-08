@@ -1,9 +1,12 @@
 package com.doodeec.filmster.Model;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import com.doodeec.filmster.Provider.MovieEntry;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -46,8 +49,15 @@ public class Movie extends JSONParser {
             mCriticsRating = cursor.getInt(cursor.getColumnIndex(MovieEntry.RATING_CRITICS_KEY));
         }
 
-        //TODO load cast
-        mCast = new String[0];
+        try {
+            JSONArray castArray = new JSONArray(cursor.getString(cursor.getColumnIndex(MovieEntry.CAST_KEY)));
+            mCast = new String[castArray.length()];
+            for (int i = 0; i < castArray.length(); i++) {
+                mCast[i] = castArray.getString(i);
+            }
+        } catch (JSONException e) {
+            Log.e("FILMSTER", "Invalid cast definition: " + e.getMessage());
+        }
     }
 
     /**
@@ -76,8 +86,15 @@ public class Movie extends JSONParser {
         JSONObject linksObject = getObjectForKey(jsonObject, MovieDefinitionKeys.KEY_LINKS);
         mLink = getStringForKey(linksObject, MovieDefinitionKeys.KEY_LINK_IMDB);
 
-        //TODO load cast
-        mCast = new String[0];
+        JSONArray castArray = getArrayForKey(jsonObject, MovieDefinitionKeys.KEY_CAST);
+        mCast = new String[castArray.length()];
+        try {
+            for (int i = 0; i < castArray.length(); i++) {
+                mCast[i] = castArray.getJSONObject(i).getString("name");
+            }
+        } catch (JSONException e) {
+            Log.e("FILMSTER", "Invalid cast definition: " + e.getMessage());
+        }
     }
 
     public String getId() {

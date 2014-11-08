@@ -2,7 +2,6 @@ package com.doodeec.filmster;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -15,12 +14,15 @@ import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.MovieDetail.MovieDetailFragment;
 import com.doodeec.filmster.MovieList.MovieListActivityInterface;
 import com.doodeec.filmster.MovieList.MovieListFragment;
+import com.doodeec.filmster.Provider.MovieProvider;
 
 
 public class MainActivity extends ActionBarActivity implements ConnectionStateChange, MovieListActivityInterface {
 
     private static final String DETAIL_TAG = "detail";
     private static final String CONNECTION_DIALOG_BUNDLE = "Connection_dialog";
+    private static final String DETAIL_DISPLAYED_BUNDLE = "Detail_show";
+    private static final String DETAIL_ID_DISPLAYED_BUNDLE = "Detail_displayed";
 
     private MovieListFragment mListFragment;
     private MovieDetailFragment mDetailFragment;
@@ -39,8 +41,13 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
             getSupportFragmentManager().beginTransaction().hide(mDetailFragment).commit();
         }
 
-        if (savedInstanceState != null && savedInstanceState.getBoolean(CONNECTION_DIALOG_BUNDLE)) {
-            showConnectionDialog();
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getBoolean(CONNECTION_DIALOG_BUNDLE)) {
+                showConnectionDialog();
+            }
+            if (savedInstanceState.getBoolean(DETAIL_DISPLAYED_BUNDLE)) {
+                onDisplayDetail(MovieProvider.getMovies().get(savedInstanceState.getInt(DETAIL_ID_DISPLAYED_BUNDLE)));
+            }
         }
     }
 
@@ -54,7 +61,7 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
             // if detail fragment was not visible yet, show it with animation
             if (!mDetailFragment.isVisible()) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_right, R.anim.slide_from_right, R.anim.slide_to_right);
+                transaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_right);
                 transaction.show(mDetailFragment);
                 transaction.commit();
             }
@@ -73,30 +80,37 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
 
     @Override
     protected void onResume() {
-        super.onResume();
         AppState.setCurrentActivity(this);
-    }
-
-    @Override
-    protected void onPause() {
-        AppState.setCurrentActivity(null);
-        super.onPause();
+        super.onResume();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        if (mDetailFragment != null && mDetailFragment.isVisible()) {
+            int moviePosition = mDetailFragment.getMovieItemId();
+
+            if (moviePosition != -1) {
+                outState.putBoolean(DETAIL_DISPLAYED_BUNDLE, true);
+                outState.putInt(DETAIL_ID_DISPLAYED_BUNDLE, mDetailFragment.getMovieItemId());
+            }
+        } else if (getSupportFragmentManager().findFragmentByTag(DETAIL_TAG) != null) {
+            int moviePosition = ((MovieDetailFragment) getSupportFragmentManager().findFragmentByTag(DETAIL_TAG)).getMovieItemId();
+
+            if (moviePosition != -1) {
+                outState.putBoolean(DETAIL_DISPLAYED_BUNDLE, true);
+                outState.putInt(DETAIL_ID_DISPLAYED_BUNDLE, moviePosition);
+            }
+            // close detail fragment, it will be recreated by saved instance parameters
+            getSupportFragmentManager().popBackStackImmediate();
+
+        }
+
         outState.putBoolean(CONNECTION_DIALOG_BUNDLE, mDialog != null);
         if (mDialog != null) {
             mDialog.dismiss();
         }
 
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        //TODO handle screen rotation
-        super.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -109,6 +123,15 @@ public class MainActivity extends ActionBarActivity implements ConnectionStateCh
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_refresh) {
+            //close detail fragment
+            if (mDetailFragment != null && mDetailFragment.isVisible()) {
+                getSupportFragmentManager().beginTransaction().hide(mDetailFragment).commit();
+
+                mListFragment.getListView().getLayoutParams().width = findViewById(android.R.id.content).getWidth();
+            } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+
             mListFragment.reloadData();
             return true;
         }

@@ -15,6 +15,7 @@ public class MovieEntry {
     public static final String YEAR_KEY = "year";
     public static final String RATING_AUDIENCE_KEY = "audRat";
     public static final String RATING_CRITICS_KEY = "critRat";
+    public static final String CAST_KEY = "cast";
 
     public static final String DICTIONARY_TABLE_NAME = "filmDictionary";
     public static final String DICTIONARY_TABLE_CREATE =
@@ -27,7 +28,8 @@ public class MovieEntry {
                     LINK_KEY + DbHelper.TYPE_TEXT + ", " +
                     YEAR_KEY + DbHelper.TYPE_INT + ", " +
                     RATING_AUDIENCE_KEY + DbHelper.TYPE_INT + ", " +
-                    RATING_CRITICS_KEY + DbHelper.TYPE_INT + ");";
+                    RATING_CRITICS_KEY + DbHelper.TYPE_INT + ", " +
+                    CAST_KEY + DbHelper.TYPE_TEXT + ");";
 
     public static final String DICTIONARY_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME;

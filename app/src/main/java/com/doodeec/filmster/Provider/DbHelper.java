@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.doodeec.filmster.Model.Movie;
 
+import org.json.JSONArray;
+
 /**
  * Created by Dusan Doodeec Bartos on 25.10.2014.
  *
@@ -19,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TYPE_TEXT = " TEXT";
     public static final String TYPE_INT = " INTEGER";
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "filmster.db";
 
     DbHelper(Context context) {
@@ -60,6 +62,12 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(MovieEntry.YEAR_KEY, movie.getYear());
         values.put(MovieEntry.RATING_AUDIENCE_KEY, movie.getAudienceRating());
         values.put(MovieEntry.RATING_CRITICS_KEY, movie.getCriticsRating());
+
+        JSONArray cast = new JSONArray();
+        for (String actor: movie.getCast()) {
+            cast.put(actor);
+        }
+        values.put(MovieEntry.CAST_KEY, cast.toString());
 
         String[] stlpec = { MovieEntry.ID_KEY } ;
         String[] args = { movie.getId() } ;

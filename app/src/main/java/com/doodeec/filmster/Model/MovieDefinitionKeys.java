@@ -22,4 +22,5 @@ public class MovieDefinitionKeys {
     protected static final String KEY_POSTER_DETAIL = "detailed";
     protected static final String KEY_LINKS = "links";
     protected static final String KEY_LINK_IMDB = "imdb";
+    protected static final String KEY_CAST = "abridged_cast";
 }
