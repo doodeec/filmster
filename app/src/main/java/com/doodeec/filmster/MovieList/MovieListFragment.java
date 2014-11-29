@@ -6,13 +6,13 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.doodeec.filmster.ApplicationState.AppState;
-import com.doodeec.filmster.LazyList.LazyList;
 import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.Provider.MovieProvider;
 import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.ServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
+import com.doodeec.lazylist.LazyListFragment;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ import java.util.Arrays;
  *
  * Implementation of LazyList Class
  */
-public class MovieListFragment extends LazyList<Movie> {
+public class MovieListFragment extends LazyListFragment<Movie> {
 
     @Override
     protected void initAdapter() {
@@ -115,7 +115,7 @@ public class MovieListFragment extends LazyList<Movie> {
 
             @Override
             public void onError(ErrorResponse error) {
-                onDataLoadingFailed(LazyList.REASON_SERVER_ERROR, page);
+                onDataLoadingFailed(LazyListFragment.REASON_SERVER_ERROR, page);
             }
 
             @Override
@@ -125,7 +125,7 @@ public class MovieListFragment extends LazyList<Movie> {
 
             @Override
             public void onCancelled() {
-                onDataLoadingFailed(LazyList.REASON_REQUEST_CANCELLED, page);
+                onDataLoadingFailed(LazyListFragment.REASON_REQUEST_CANCELLED, page);
             }
         });
     }

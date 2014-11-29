@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.doodeec.filmster.ImageCache;
-import com.doodeec.filmster.LazyList.LazyListAdapter;
 import com.doodeec.filmster.Model.Movie;
 import com.doodeec.filmster.R;
 import com.doodeec.filmster.ServerCommunicator.ResourceService;
 import com.doodeec.filmster.ServerCommunicator.ResponseListener.BitmapServerResponseListener;
 import com.doodeec.filmster.ServerCommunicator.ServerRequest.ErrorResponse;
+import com.doodeec.lazylist.LazyAdapter;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @see com.doodeec.filmster.LazyList.LazyListAdapter
  */
-public class MovieListAdapter extends LazyListAdapter<Movie> {
+public class MovieListAdapter extends LazyAdapter<Movie> {
 
     public MovieListAdapter(List<Movie> movies, MovieListFragment list) {
         super(movies, list);
